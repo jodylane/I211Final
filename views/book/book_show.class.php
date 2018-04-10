@@ -9,4 +9,7 @@
  */
 class BookShow {
 
+    public function display($book) {
+
+    }
 }

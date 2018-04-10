@@ -8,5 +8,7 @@
  * Description: This file was created to
  */
 class BookIndex {
+    public function display($books) {
 
+    }
 }

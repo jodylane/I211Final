@@ -15,18 +15,33 @@ class BookController {
     }
 
     public function index () {
-
+        $books = $this->book_model->list_books();
+        if(!$books) {
+            $message = "There was a problem displaying books.";
+            $this->error($message);
+            return;
+        }
+        $view = new BookIndex();
+        $view->display($books);
     }
 
     public function show ($id) {
+        $book = $this->book_model->view_book($id);
+        if(!$book) {
+            $message = "There was a problem displaying book with id=$id.";
+            $this->error($message);
+            return;
+        }
 
+        $view = new BookShow();
+        $view->display($book);
     }
 
     public function edit ($id) {
 
     }
 
-    public function create ($title, $author, $isbn, $publisher, $publish_date, $desc) {
+    public function create ($title, $author, $isbn, $category, $publisher, $publish_date, $image, $desc) {
 
     }
 

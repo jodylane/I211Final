@@ -50,6 +50,7 @@ class BookController {
     }
 
     public function error ($message) {
-
+        $error = new BookError();
+        $error->display($message);
     }
 }

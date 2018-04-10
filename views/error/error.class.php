@@ -8,5 +8,8 @@
  * Description: This file was created to
  */
 class Error {
-
+    public function test () {
+        echo "this is a test.";     
+    }
+    
 }

@@ -9,16 +9,19 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
     public static $classMap = array (
         'Book' => __DIR__ . '/../..' . '/models/book.class.php',
         'BookController' => __DIR__ . '/../..' . '/controllers/book_controller.class.php',
-        'BookCreate' => __DIR__ . '/../..' . '/views/book/book_create.class.php',
-        'BookEdit' => __DIR__ . '/../..' . '/views/book/book_edit.class.php',
-        'BookIndex' => __DIR__ . '/../..' . '/views/book/book_index.class.php',
+        'BookCreate' => __DIR__ . '/../..' . '/views/book/create/book_create.class.php',
+        'BookEdit' => __DIR__ . '/../..' . '/views/book/edit/book_edit.class.php',
+        'BookError' => __DIR__ . '/../..' . '/views/book/error/book_error.class.php',
+        'BookIndex' => __DIR__ . '/../..' . '/views/book/index/book_index.class.php',
+        'BookIndexView' => __DIR__ . '/../..' . '/views/book/book_index_view.class.php',
         'BookModel' => __DIR__ . '/../..' . '/models/book_model.class.php',
-        'BookShow' => __DIR__ . '/../..' . '/views/book/book_show.class.php',
+        'BookShow' => __DIR__ . '/../..' . '/views/book/show/book_show.class.php',
         'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Database' => __DIR__ . '/../..' . '/application/database.class.php',
-        'Error' => __DIR__ . '/../..' . '/views/error/error.class.php',
+        'Dispatcher' => __DIR__ . '/../..' . '/application/dispatcher.class.php',
+        'IndexView' => __DIR__ . '/../..' . '/views/index_view.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

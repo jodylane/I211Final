@@ -13,7 +13,6 @@ class Database {
         'login' => 'phpuser',
         'password' => 'phpuser',
         'database' => '{insert_db_name_here}',
-        'tblMovie' => 'movies',
         'tblBook' => 'books',
         'tblBookCategory' => 'book_categories'
     );

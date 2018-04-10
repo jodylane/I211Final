@@ -67,10 +67,41 @@ class BookModel {
     }
 
     public function view_book ($id) {
+        $sql = "SELECT * FROM " . $this->tblBook . "," . $this->tblBookCategory .
+            " WHERE " . $this->tblBook . ".category=" . $this->tblBookCategory . ".category_id" .
+            " AND " . $this->tblBook . ".id='$id'";
 
+        //execute the query
+        $query = $this->dbConnection->query($sql);
+
+        if ($query && $query->num_rows > 0) {
+            $obj = $query->fetch_object();
+
+            //create a book object
+            $book = new Book(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));
+
+            //set the id for the book
+            $book->setId($obj->id);
+
+            return $book;
+        }
+
+        return false;
     }
 
     public function getBookCategories () {
+        $sql = "SELECT * FROM " . $this->tblBookCategory;
 
+        $query = $this->dbConnection->query($sql);
+
+        if (!$query) {
+            return false;
+        }
+
+        $categories = array();
+        while ($obj = $query->fetch_object()) {
+            $categories[$obj->category] = $obj->category_id;
+        }
+        return $categories;
     }
 }

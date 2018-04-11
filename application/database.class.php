@@ -12,9 +12,9 @@ class Database {
         'host' => 'localhost',
         'login' => 'phpuser',
         'password' => 'phpuser',
-        'database' => '{insert_db_name_here}',
+        'database' => 'indylibrary_db',
         'tblBook' => 'books',
-        'tblBookCategory' => 'book_categories'
+        'tblBookCategory' => 'books_categories'
     );
 
     private $objDBConnection = NULL;

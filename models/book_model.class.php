@@ -13,9 +13,9 @@ class BookModel {
 
     public function __construct () {
         $this->db = Database::getDatabase();
-        $this->dbConnection = $this->getConnection();
-        $this->tblBook = $this->getBookTable();
-        $this->tblBookCategory = $this->getBookCategoryTable();
+        $this->dbConnection = $this->db->getConnection();
+        $this->tblBook = $this->db->getBookTable();
+        $this->tblBookCategory = $this->db->getBookCategoryTable();
 
         foreach ($_POST as $key => $value) {
             $_POST[$key] = $this->dbConnection->real_escape_string($value);
@@ -39,8 +39,9 @@ class BookModel {
     }
 
     public function list_books() {
-        $sql = "SELECT * FROM " . $this->tblBook . "," . $this->tblBookCategory .
-            " WHERE " . $this->tblBook . ".category=" . $this->tblBookCategory . ".category_id";
+        $sql = "SELECT $this->tblBook.*, $this->tblBookCategory.category
+          FROM $this->tblBook, $this->tblBookCategory
+          WHERE $this->tblBook.category_id=$this->tblBookCategory.id";
 
         $query = $this->dbConnection->query($sql);
 
@@ -55,8 +56,7 @@ class BookModel {
         $books = array();
 
         while ($obj = $query->fetch_object()) {
-            $book = new Book(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));
-
+            $book = new Book(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));;
             //set the id for the book
             $book->setId($obj->id);
 
@@ -100,7 +100,7 @@ class BookModel {
 
         $categories = array();
         while ($obj = $query->fetch_object()) {
-            $categories[$obj->category] = $obj->category_id;
+            $categories[$obj->category] = $obj->id;
         }
         return $categories;
     }

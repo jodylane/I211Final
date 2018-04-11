@@ -10,17 +10,20 @@
 class BookController {
     private $book_model;
 
-    public function construct () {
+    public function __construct () {
         $this->book_model = BookModel::getBookModel();
     }
 
     public function index () {
         $books = $this->book_model->list_books();
+
         if(!$books) {
+            echo "hello";
             $message = "There was a problem displaying books.";
             $this->error($message);
             return;
         }
+
         $view = new BookIndex();
         $view->display($books);
     }
@@ -52,5 +55,15 @@ class BookController {
     public function error ($message) {
         $error = new BookError();
         $error->display($message);
+    }
+
+    //handle calling inaccessible methods
+    public function __call($name, $arguments) {
+        //$message = "Route does not exist.";
+        // Note: value of $name is case sensitive.
+        $message = "Calling method '$name' caused errors. Route does not exist.";
+
+        $this->error($message);
+        return;
     }
 }

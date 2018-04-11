@@ -7,7 +7,7 @@
  * Time: 2:03 PM
  * Description: This file was created to
  */
-class BookIndex extends IndexView {
+class BookIndex extends BookIndexView {
     public function display($books) {
         parent::displayHeader("List All Books");
 
@@ -18,20 +18,22 @@ class BookIndex extends IndexView {
             foreach ($books as $i => $book) {
                 $id = $book->getId();
                 $title = $book->getTitle();
-                $author = $book->getAuthor();
                 $category = $book->getCategory();
-                $publish_date = new \DateTime($book->getPublish_date());
+                $publish_date = new DateTime($book->getPublishDate());
+                $publish_date = $publish_date->format('m-d-Y');
                 $image = $book->getImage();
                 if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
                     $image = BASE_URL . "/" . BOOK_IMG . $image;
                 }
+
                 if ($i % 6 == 0) {
                     echo "<div class='row'>";
                 }
 
                 echo "<div class='col'><p><a href='", BASE_URL, "/book/detail/$id'><img src='" . $image .
-                    "'></a><span>$title<br>$category<br>" . $publish_date->format('m-d-Y') . "</span></p></div>";
-
+                    "'></a><span>$title<br>$category<br>" . $publish_date . "</span></p></div>";
+                ?>
+                <?php
                 if ($i % 6 == 5 || $i == count($books) - 1) {
                     echo "</div>";
                 }

@@ -30,6 +30,7 @@ class BookController {
 
     public function show ($id) {
         $book = $this->book_model->view_book($id);
+
         if(!$book) {
             $message = "There was a problem displaying book with id=$id.";
             $this->error($message);

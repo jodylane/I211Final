@@ -67,9 +67,10 @@ class BookModel {
     }
 
     public function view_book ($id) {
-        $sql = "SELECT * FROM " . $this->tblBook . "," . $this->tblBookCategory .
-            " WHERE " . $this->tblBook . ".category=" . $this->tblBookCategory . ".category_id" .
-            " AND " . $this->tblBook . ".id='$id'";
+        $sql = "SELECT *
+          FROM $this->tblBook, $this->tblBookCategory
+          WHERE $this->tblBook.category_id= $this->tblBookCategory.id
+            AND $this->tblBook.id='$id'";
 
         //execute the query
         $query = $this->dbConnection->query($sql);

@@ -1,46 +1,45 @@
-body, html {
-    height: 100%;
-    width: 100%;
+.thumbnail {
+    min-height: 365px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+.thumbnail:hover {
+    border: 1px solid #337ab7;
+    box-shadow: 1px 1px 8px 1.5px #337ab7;
 }
 
-.header {
-    height: 100px;
-    width: 100%;
-    background-color: lightsalmon;
-    margin-bottom: 15px;
+a:hover {
+    text-decoration: none !important;
+}
+
+.thumbnail img {
+    min-width: 100%;
+    max-height: 200px !important;
+}
+
+.panel-heading {
+    background-color: rgba(69, 177, 232, 0.03) !important;
+}
+
+.panel-body img {
+    max-height: 350px;
+    min-width: 80%;
+}
+
+.panel-body .book-desc {
+    margin-top: 20px;
+}
+
+.col-md-custom {
+    width: 20%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .footer {
-    height: 100px;
-    width: 100%;
-    background-color: lightsalmon;
-    margin-top: 15px;
-}
-
-.allBooksWrapper {
+    height: 50px;
+    background-color: #e7e7e7;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-
-.col {
-   width: 15%;
-}
-
-.row {
-    width: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.bookImage {
-    width: 150px;
-    height: 200px;
 }

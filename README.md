@@ -13,5 +13,5 @@ _For Local Development_
 _For Production Server_
 
 ## Developer Notes
-This project requires bootstrap version ^3.3.7 
+This project requires bootstrap version ^3.3.7  
 Run ```npm install``` inside your local project within terminal/command prompt to install all project dependencies.

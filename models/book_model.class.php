@@ -31,7 +31,7 @@ class BookModel {
         }
     }
 
-    public function getBookModel () {
+    public static function getBookModel () {
         if (self::$_instance == NULL) {
             self::$_instance = new BookModel();
         }

@@ -12,7 +12,14 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/New_York');
 
 //base url of the application
-define("BASE_URL", "http://localhost/I211/LibraryLending");
+
+//for Blake: "http://localhost:8080/I211Final"
+
+
+//recent: "http://localhost/I211/LibraryLending"
+
+define("BASE_URL", "http://localhost:8080/I211Final");
+
 
 /*************************************************************************************
  *                       settings for books                                         *

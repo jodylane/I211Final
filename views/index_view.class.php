@@ -21,12 +21,15 @@ class IndexView {
                 </script>
             </head>
             <body>
+
+        <div class="header">Indy Library</div>
         <?php
     }
 
     public static function displayFooter () {
         ?>
 
+        <div class="footer">This is the footer</div>
             </body>
         </html>
         <?php

@@ -11,6 +11,9 @@ class BookIndex extends BookIndexView {
     public function display($books) {
         parent::displayHeader("List All Books");
 
+        ?>
+        <div class="allBooksWrapper">
+        <?php
         if ($books === 0) {
             echo "No book was found.<br><br><br><br><br>";
         } else {
@@ -30,8 +33,14 @@ class BookIndex extends BookIndexView {
                     echo "<div class='row'>";
                 }
 
-                echo "<div class='col'><p><a href='", BASE_URL, "/book/detail/$id'><img src='" . $image .
-                    "'></a><span>$title<br>$category<br>" . $publish_date . "</span></p></div>";
+                echo "<div class='col'>" .
+                        "<a href='", BASE_URL, "/book/detail/$id'>" .
+                            "<img class='bookImage' src='" . $image . "'>" .
+                        "</a><br>" .
+                        "<div>$title</div>" .
+                        "<div>$category</div>" .
+                        "<div>$publish_date</div>" .
+                    "</div>";
                 ?>
                 <?php
                 if ($i % 6 == 5 || $i == count($books) - 1) {
@@ -40,5 +49,9 @@ class BookIndex extends BookIndexView {
             }
         }
         parent::displayFooter();
+
+        ?>
+        </div>
+        <?php
     }
-}
+} //ends class

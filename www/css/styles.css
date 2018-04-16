@@ -36,6 +36,16 @@ a:hover {
     padding-right: 15px;
 }
 
+.radio-form-fix .col-md-12:last-child {
+    margin-bottom: 15px;
+}
+
+textarea {
+    min-height: 175px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
 .footer {
     height: 50px;
     background-color: #e7e7e7;

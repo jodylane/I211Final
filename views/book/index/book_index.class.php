@@ -37,7 +37,7 @@ class BookIndex extends BookIndexView {
                 ?>
 
                 <div class="col-md-custom">
-                    <a href="<?= BASE_URL ?>/book/show/<?= $id ?>">
+                    <a href="<?= BASE_URL . "/book/show/$id"?>">
                         <div class="thumbnail">
                             <img src="<?= $image ?>" alt="<?= $title ?>">
                             <div class="caption">

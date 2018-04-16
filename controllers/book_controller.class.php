@@ -18,7 +18,6 @@ class BookController {
         $books = $this->book_model->list_books();
 
         if(!$books) {
-            echo "hello";
             $message = "There was a problem displaying books.";
             $this->error($message);
             return;
@@ -42,10 +41,30 @@ class BookController {
     }
 
     public function edit ($id) {
+        $book = $this->book_model->view_book($id);
 
+        if(!$book) {
+            $message = "There was a problem displaying the book id='" . $id . "'.";
+            $this->error($message);
+            return;
+        }
+        $view = new BookEdit();
+        $view->display($book);
     }
 
-    public function create ($title, $author, $isbn, $category, $publisher, $publish_date, $image, $desc) {
+    public function update ($id){
+        $update = $this->book_model->update_book($id);
+        if (!$update) {
+            $message = "There was a problem updating the book id='" . $id . "'.";
+            $this->error($message);
+            return;
+        }
+        $book = $this->book_model->view_book($id);
+        $view = new BookDetail();
+        $view->display($book);
+    }
+
+    public function create () {
 
     }
 

@@ -105,4 +105,49 @@ class BookModel {
         }
         return $categories;
     }
+
+    //search the database for movies that match words in titles.
+    //Return an array of movies if succeed; false otherwise.
+
+    public function search_book($terms) {
+        $terms = explode(" ", $terms); //explode multiple terms into an array
+
+        $termsLength = sizeof($terms);
+
+        //select statement for AND serach
+        $sql = "SELECT * FROM " . $this->db->getBookTable() . " WHERE TITLE LIKE '%" . $terms[0] . "%'";
+
+        if($termsLength > 1) {
+            for($x = 1; $x < $termsLength; $x++) {
+                $sql .= " AND TITLE LIKE '%" . $terms[$x] . "%'";
+            }
+        }
+
+        //execute the query
+        $query = $this->dbConnection->query($sql);
+
+        // the search failed, return false.
+        if (!$query)
+            return false;
+
+        //search succeeded, but no movie was found.
+        if ($query->num_rows == 0)
+            return 0;
+
+        //search succeeded, and found at least 1 movie found.
+        //create an array to store all the returned movies
+        $movies = array();
+
+        //loop through all rows in the returned recordsets
+        while ($obj = $query->fetch_object()) {
+            $movie = new Book($obj->title, $obj->author, $obj->isbn, $obj->category_id, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
+
+            //set the id for the movie
+            $movie->setId($obj->id);
+
+            //add the movie into the array
+            $movies[] = $movie;
+        }
+        return $movies;
+    }
 }

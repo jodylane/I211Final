@@ -13,10 +13,11 @@ date_default_timezone_set('America/New_York');
 
 //recent: "http://localhost/I211/LibraryLending"
 // base url for Josh cause he hates himself and likes to be different because he is dumb and named the repository something it wasn't supposed to be and blah...
-define("BASE_URL", "http://localhost/I211/LibraryLending");
+//way to go josh
+//define("BASE_URL", "http://localhost/I211/LibraryLending");
 
 // base url for everyone else please uncomment this and comment out the line above if you are anyone except josh.
-//define("BASE_URL", "http://localhost/I211Final");
+define("BASE_URL", "http://localhost:8080/I211Final");
 
 /*************************************************************************************
  *                       settings for books                                         *

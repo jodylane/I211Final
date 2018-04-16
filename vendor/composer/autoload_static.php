@@ -15,6 +15,7 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
         'BookIndex' => __DIR__ . '/../..' . '/views/book/index/book_index.class.php',
         'BookIndexView' => __DIR__ . '/../..' . '/views/book/book_index_view.class.php',
         'BookModel' => __DIR__ . '/../..' . '/models/book_model.class.php',
+        'BookSearch' => __DIR__ . '/../..' . '/views/book/search/book_search.class.php',
         'BookShow' => __DIR__ . '/../..' . '/views/book/show/book_show.class.php',
         'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
@@ -22,6 +23,8 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
         'Database' => __DIR__ . '/../..' . '/application/database.class.php',
         'Dispatcher' => __DIR__ . '/../..' . '/application/dispatcher.class.php',
         'IndexView' => __DIR__ . '/../..' . '/views/index_view.class.php',
+        'WelcomeController' => __DIR__ . '/../..' . '/controllers/welcome_controller.class.php',
+        'WelcomeIndex' => __DIR__ . '/../..' . '/views/welcome/welcome_index.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -53,6 +53,45 @@ class BookController {
 
     }
 
+    public function suggest($terms) {
+        //retrieve query terms
+        $query_terms = urldecode(trim($terms));
+        $movies = $this->book_model->search_book($query_terms);
+
+        //retrieve all movie titles and store them in an array
+        $titles = array();
+        if ($movies) {
+            foreach ($movies as $movie) {
+                $titles[] = $movie->getTitle();
+            }
+        }
+
+        echo json_encode($titles);
+    }
+
+    public function search() {
+        //retrieve query terms from search form
+        $query_terms = trim($_GET['query-terms']);
+
+        //if search term is empty, list all movies
+        if ($query_terms == "") {
+            $this->index();
+        }
+
+        //search the database for matching movies
+        $books = $this->book_model->search_book($query_terms);
+
+        if ($books === false) {
+            //handle error
+            $message = "An error has occurred.";
+            $this->error($message);
+            return;
+        }
+        //display matched movies
+        $search = new BookSearch();
+        $search->display($query_terms, $books);
+    }
+
     public function error ($message) {
         $error = new BookError();
         $error->display($message);

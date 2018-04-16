@@ -56,10 +56,12 @@ class IndexView {
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left">
+                    <form class="navbar-form navbar-left" method="get" action="<?= BASE_URL ?>/book/search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" id="form-control" autocomplete="off" name="query-terms" placeholder="Search" onkeyup="handleKeyUp(event)">
                         </div>
+
+                        <div id="suggestionDiv"></div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
@@ -86,8 +88,9 @@ class IndexView {
                 <div class="row">
                     <div class="footer"><span>&copy; Indianapolis Library 2018</span></div>
                 </div>
-
-                <script src="<?= BASE_URL ?>/node_modules/bootstrap/dist/js/bootstrap.min.js'"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="<?= BASE_URL ?>/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script src="<?= BASE_URL ?>/www/js/ajax_autosuggestion.js"></script>
             </body>
         </html>
         <?php

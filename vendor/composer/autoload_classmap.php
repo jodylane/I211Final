@@ -14,6 +14,7 @@ return array(
     'BookIndex' => $baseDir . '/views/book/index/book_index.class.php',
     'BookIndexView' => $baseDir . '/views/book/book_index_view.class.php',
     'BookModel' => $baseDir . '/models/book_model.class.php',
+    'BookSearch' => $baseDir . '/views/book/search/book_search.class.php',
     'BookShow' => $baseDir . '/views/book/show/book_show.class.php',
     'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
@@ -21,4 +22,6 @@ return array(
     'Database' => $baseDir . '/application/database.class.php',
     'Dispatcher' => $baseDir . '/application/dispatcher.class.php',
     'IndexView' => $baseDir . '/views/index_view.class.php',
+    'WelcomeController' => $baseDir . '/controllers/welcome_controller.class.php',
+    'WelcomeIndex' => $baseDir . '/views/welcome/welcome_index.class.php',
 );

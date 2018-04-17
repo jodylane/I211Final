@@ -143,6 +143,8 @@ class BookModel {
         return $categories;
     }
 
+
+
     public function search_book($terms) {
         $terms = explode(" ", $terms);
 

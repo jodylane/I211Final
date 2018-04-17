@@ -56,12 +56,7 @@ class IndexView {
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" method="get" action="<?= BASE_URL ?>/book/search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" autocomplete="off" name="query-terms" placeholder="Search" onkeyup="handleKeyUp(event)">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Link</a></li>
                         <li class="dropdown">

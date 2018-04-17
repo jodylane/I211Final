@@ -18,7 +18,7 @@ class BookController {
 
     public function index() {
         $books = $this->book_model->list_books();
-        echo self::$instanceCount;
+        //echo self::$instanceCount;
 
         if(!$books) {
             $message = "There was a problem displaying books.";

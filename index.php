@@ -54,3 +54,9 @@ if (count($url_array) > 2) {
 
 //call a method with a variable number of arguments
 call_user_func_array(array($controller, $method), $args);
+
+if(!defined("BASE_URL")) {
+    define("BASE_URL", "http:"); //url path here
+}
+
+new Dispatcher();

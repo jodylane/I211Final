@@ -73,15 +73,13 @@ class BookController {
     }
 
     public function suggest($terms) {
-        //retrieve query terms
         $query_terms = urldecode(trim($terms));
-        $movies = $this->book_model->search_book($query_terms);
+        $books = $this->book_model->search_book($query_terms);
 
-        //retrieve all movie titles and store them in an array
         $titles = array();
-        if ($movies) {
-            foreach ($movies as $movie) {
-                $titles[] = $movie->getTitle();
+        if ($books) {
+            foreach ($books as $book) {
+                $titles[] = $book->getTitle();
             }
         }
 
@@ -89,15 +87,12 @@ class BookController {
     }
 
     public function search() {
-        //retrieve query terms from search form
         $query_terms = trim($_GET['query-terms']);
 
-        //if search term is empty, list all movies
         if ($query_terms == "") {
             $this->index();
         }
 
-        //search the database for matching movies
         $books = $this->book_model->search_book($query_terms);
 
         if ($books === false) {

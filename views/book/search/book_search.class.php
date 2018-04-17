@@ -6,10 +6,13 @@ class BookSearch extends BookIndexView {
         parent::displayHeader("List All Books");
 
         ?>
+        <div id="suggestionDiv" class="list-group col-md-5">
+            <span class="list-group-item-heading"><?= $terms ?></span>
+        </div>
         <div class="allBooksWrapper">
             <?php
             if ($books === 0) {
-                echo "No book was found.<br><br><br><br><br>";
+                echo "No books were found with under '$terms'.<br><br><br><br><br>";
             } else {
                 //display books in a grid; six books per row
                 echo "<div class='row'>";

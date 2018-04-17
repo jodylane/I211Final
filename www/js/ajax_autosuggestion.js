@@ -26,7 +26,7 @@ window.onload = function () {
     xmlHttp = createXmlHttpRequestObject();
 
     //DOM objects
-    searchBoxObj = document.getElementById('form-control');
+    searchBoxObj = document.querySelector('.form-control');
     suggestionBoxObj = document.getElementById('suggestionDiv');
 };
 
@@ -69,9 +69,6 @@ function suggest(query) {
 function displayTitles(titles) {
     numTitles = titles.length;
 
-    console.log("num Title: " + numTitles);
-    console.log(titles);
-    //console.log(numTitles);
     activeTitle = -1;
     if (numTitles === 0) {
         //hide all suggestions
@@ -82,10 +79,10 @@ function displayTitles(titles) {
     var divContent = "";
     //retrive the titles from the JSON doc and create a new span for each title
     for (i = 0; i < titles.length; i++) {
-        divContent += "<span id=s_" + i + " onclick='clickTitle(this)'>" + titles[i] + "</span><br>";
+        divContent += "<span class='list-group-item' id='s_" + i + "' onclick='clickTitle(this)'>" + titles[i] + "</span>";
     }
     //display the spans in the div block
-    suggestionBoxObj.innerHTML = divContent;
+    suggestionBoxObj.innerHTML += divContent;
     suggestionBoxObj.style.display = 'block';
 }
 

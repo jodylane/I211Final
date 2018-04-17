@@ -12,6 +12,7 @@ class BookShow extends BookIndexView {
     public function display($book) {
         parent::displayHeader("Page Title");
 
+        $id = $book->getId();
         $title = $book->getTitle();
         $isbn = $book->getIsbn();
         $author = $book->getAuthor();
@@ -44,7 +45,8 @@ class BookShow extends BookIndexView {
                                 <p><strong>ISBN: </strong><?= $isbn?></p>
                                 <p><strong>Publisher: </strong><?= $publisher?></p>
                                 <p><strong>Publish Date: </strong><?= $publish_date?></p>
-                                <a href="<?= BASE_URL ?>/book/index">Go to book list</a>
+                                <a href="<?= BASE_URL ?>/book/index">Go to book list</a> |
+                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a>
                             </div>
                         </div>
                         <div class="row book-desc">

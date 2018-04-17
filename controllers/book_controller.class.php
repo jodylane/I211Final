@@ -60,7 +60,7 @@ class BookController {
             return;
         }
         $book = $this->book_model->view_book($id);
-        $view = new BookDetail();
+        $view = new BookShow();
         $view->display($book);
     }
 

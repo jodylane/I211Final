@@ -90,6 +90,43 @@ class BookModel {
         return false;
     }
 
+    public function update_book ($id) {
+        if (!filter_has_var(INPUT_POST, 'title') ||
+            !filter_has_var(INPUT_POST, 'isbn') ||
+            !filter_has_var(INPUT_POST, 'author') ||
+            !filter_has_var(INPUT_POST, 'category') ||
+            !filter_has_var(INPUT_POST, 'publish-date') ||
+            !filter_has_var(INPUT_POST, 'publisher') ||
+            !filter_has_var(INPUT_POST, 'image') ||
+            !filter_has_var(INPUT_POST, 'description')) {
+
+            return false;
+        }
+
+        $title = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING)));
+        $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
+        $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
+        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish_date', FILTER_DEFAULT)));
+        $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
+        $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
+        $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
+
+        $sql = "UPDATE $this->tblBook
+          SET
+            title='$title',
+            isbn='$isbn',
+            author='$author',
+            category_id='$category',
+            publish_date='$publish_date',
+            publisher='$publisher',
+            image='$image',
+            description='$description'
+          WHERE id='$id'";
+
+        return $this->dbConnection->query($sql);
+    }
+
     public function getBookCategories () {
         $sql = "SELECT * FROM " . $this->tblBookCategory;
 
@@ -106,15 +143,11 @@ class BookModel {
         return $categories;
     }
 
-    //search the database for movies that match words in titles.
-    //Return an array of movies if succeed; false otherwise.
-
     public function search_book($terms) {
-        $terms = explode(" ", $terms); //explode multiple terms into an array
+        $terms = explode(" ", $terms);
 
         $termsLength = sizeof($terms);
 
-        //select statement for AND serach
         $sql = "SELECT * FROM " . $this->db->getBookTable() . " WHERE TITLE LIKE '%" . $terms[0] . "%'";
 
         if($termsLength > 1) {
@@ -123,31 +156,27 @@ class BookModel {
             }
         }
 
-        //execute the query
         $query = $this->dbConnection->query($sql);
 
-        // the search failed, return false.
-        if (!$query)
+        if (!$query) {
             return false;
+        }
 
-        //search succeeded, but no movie was found.
-        if ($query->num_rows == 0)
+        if ($query->num_rows == 0) {
             return 0;
+        }
 
-        //search succeeded, and found at least 1 movie found.
-        //create an array to store all the returned movies
-        $movies = array();
+        $books = array();
 
-        //loop through all rows in the returned recordsets
         while ($obj = $query->fetch_object()) {
-            $movie = new Book($obj->title, $obj->author, $obj->isbn, $obj->category_id, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
+            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category_id, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
 
             //set the id for the movie
-            $movie->setId($obj->id);
+            $book->setId($obj->id);
 
             //add the movie into the array
-            $movies[] = $movie;
+            $books[] = $book;
         }
-        return $movies;
+        return $books;
     }
 }

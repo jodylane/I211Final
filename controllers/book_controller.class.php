@@ -9,13 +9,16 @@
  */
 class BookController {
     private $book_model;
+    public static $instanceCount = 0;
 
     public function __construct () {
         $this->book_model = BookModel::getBookModel();
+        self::$instanceCount++;
     }
 
-    public function index () {
+    public function index() {
         $books = $this->book_model->list_books();
+        echo self::$instanceCount;
 
         if(!$books) {
             $message = "There was a problem displaying books.";
@@ -27,7 +30,7 @@ class BookController {
         $view->display($books);
     }
 
-    public function show ($id) {
+    public function show($id) {
         $book = $this->book_model->view_book($id);
 
         if(!$book) {

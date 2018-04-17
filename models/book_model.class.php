@@ -11,7 +11,7 @@ class BookModel {
     private $db, $dbConnection, $tblBook, $tblBookCategory;
     static private $_instance = NULL;
 
-    public function __construct () {
+    public function __construct() {
         $this->db = Database::getDatabase();
         $this->dbConnection = $this->db->getConnection();
         $this->tblBook = $this->db->getBookTable();
@@ -31,7 +31,7 @@ class BookModel {
         }
     }
 
-    public static function getBookModel () {
+    public static function getBookModel() {
         if (self::$_instance == NULL) {
             self::$_instance = new BookModel();
         }
@@ -66,7 +66,7 @@ class BookModel {
         return $books;
     }
 
-    public function view_book ($id) {
+    public function view_book($id) {
         $sql = "SELECT *
           FROM $this->tblBook, $this->tblBookCategory
           WHERE $this->tblBook.category_id= $this->tblBookCategory.id
@@ -90,7 +90,7 @@ class BookModel {
         return false;
     }
 
-    public function update_book ($id) {
+    public function update_book($id) {
         if (!filter_has_var(INPUT_POST, 'title') ||
             !filter_has_var(INPUT_POST, 'isbn') ||
             !filter_has_var(INPUT_POST, 'author') ||
@@ -127,7 +127,7 @@ class BookModel {
         return $this->dbConnection->query($sql);
     }
 
-    public function getBookCategories () {
+    public function getBookCategories() {
         $sql = "SELECT * FROM " . $this->tblBookCategory;
 
         $query = $this->dbConnection->query($sql);

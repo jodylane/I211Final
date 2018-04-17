@@ -8,7 +8,7 @@
  * Description: This file was created to
  */
 class IndexView {
-    public static function displayHeader ($title) {
+    public static function displayHeader($title) {
         ?>
         <!DOCTYPE html>
         <html>

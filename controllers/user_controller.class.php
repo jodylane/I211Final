@@ -1,13 +1,10 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+/*
+ * Name: {brad update these two fields}
+ * Description: {brad update these two fields}
+ *
+ * */
 class UserController {
-
     private $user_model;
 
     //constructor
@@ -21,6 +18,7 @@ class UserController {
         $view->display();
     }
 
+    // the model should handle this not the controller
     //validate username and password
     public function validate() {
         $username = $_POST['username'];
@@ -38,6 +36,7 @@ class UserController {
     
     //logout
     public function logout() {
+        // logout should reroute back to welcome controller no need for a logout view
         $view = new Logout();
         $view->display();
     }

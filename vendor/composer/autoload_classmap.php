@@ -7,8 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Book' => $baseDir . '/models/book.class.php',
+    'BookAdd' => $baseDir . '/views/book/add/book_add.class.php',
     'BookController' => $baseDir . '/controllers/book_controller.class.php',
-    'BookCreate' => $baseDir . '/views/book/create/book_create.class.php',
     'BookEdit' => $baseDir . '/views/book/edit/book_edit.class.php',
     'BookError' => $baseDir . '/views/book/error/book_error.class.php',
     'BookIndex' => $baseDir . '/views/book/index/book_index.class.php',

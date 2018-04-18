@@ -8,8 +8,8 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
 {
     public static $classMap = array (
         'Book' => __DIR__ . '/../..' . '/models/book.class.php',
+        'BookAdd' => __DIR__ . '/../..' . '/views/book/add/book_add.class.php',
         'BookController' => __DIR__ . '/../..' . '/controllers/book_controller.class.php',
-        'BookCreate' => __DIR__ . '/../..' . '/views/book/create/book_create.class.php',
         'BookEdit' => __DIR__ . '/../..' . '/views/book/edit/book_edit.class.php',
         'BookError' => __DIR__ . '/../..' . '/views/book/error/book_error.class.php',
         'BookIndex' => __DIR__ . '/../..' . '/views/book/index/book_index.class.php',

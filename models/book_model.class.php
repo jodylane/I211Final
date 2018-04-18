@@ -127,6 +127,14 @@ class BookModel {
         return $this->dbConnection->query($sql);
     }
 
+    public function destroy_book($id) {
+        $sql = "DELETE
+            FROM $this->tblBook
+            WHERE id='$id'";
+
+        return $this->dbConnection->query($sql);
+    }
+
     public function create_book() {
         if (!filter_has_var(INPUT_POST, 'title') ||
             !filter_has_var(INPUT_POST, 'isbn') ||
@@ -144,13 +152,14 @@ class BookModel {
         $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
         $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
         $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
-        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish_date', FILTER_DEFAULT)));
+        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish-date', FILTER_DEFAULT)));
         $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
         $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
         $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
 
         $sql = "INSERT
           INTO $this->tblBook(
+            id,
             title,
             isbn,
             author,
@@ -161,14 +170,15 @@ class BookModel {
             description
           )
           VALUES(
-            title='$title',
-            isbn='$isbn',
-            author='$author',
-            category_id='$category',
-            publish_date='$publish_date',
-            publisher='$publisher',
-            image='$image',
-            description='$description'
+            NULL,
+            '$title',
+            '$isbn',
+            '$author',
+            '$category',
+            '$publish_date',
+            '$publisher',
+            '$image',
+            '$description'
           )";
 
         return $this->dbConnection->query($sql);

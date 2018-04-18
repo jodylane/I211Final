@@ -6,8 +6,8 @@ class BookSearch extends BookIndexView {
         parent::displayHeader("List All Books");
 
         ?>
-        <div id="suggestionDiv" class="list-group col-md-5">
-            <span class="list-group-item-heading"><?= $terms ?></span>
+        <div class="row">
+            <div class="col-md-10 panel panel-default"><?= $terms ?></div>
         </div>
         <div class="allBooksWrapper">
             <?php

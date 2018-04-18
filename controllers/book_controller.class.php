@@ -54,25 +54,41 @@ class BookController {
             $this->error($message);
             return;
         }
-        $this->show($id);
+        $book = $this->book_model->view_book($id);
+        $confirm = "Book was successfully updated!";
+        $view = new BookShow();
+        $view->display($book, $confirm);
     }
 
-    public function newBook() {
-
+    public function add() {
+        $view = new BookAdd();
+        $view->display();
     }
 
-    public function addBook() {
+    public function create() {
         $created = $this->book_model->create_book();
         if (!$created) {
             $message = "There was a problem creating a new book.";
             $this->error($message);
             return;
         }
-        $this->index();
+        $books = $this->book_model->list_books();
+        $confirm = "Book was successfully added to library!";
+        $view = new BookIndex();
+        $view->display($books, $confirm);
     }
 
     public function destroy($id) {
-
+        $destroy = $this->book_model->destroy_book($id);
+        if(!$destroy) {
+            $message = "There was a problem destroying the book id=$id.";
+            $this->error($message);
+            return;
+        }
+        $books = $this->book_model->list_books();
+        $confirm = "Book was successfully deleted from library!";
+        $view = new BookIndex();
+        $view->display($books, $confirm);
     }
 
     public function suggest($terms) {

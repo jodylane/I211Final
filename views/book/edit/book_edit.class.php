@@ -80,7 +80,7 @@ class BookEdit extends BookIndexView {
                                 </div>
                                 <div class="text-center form-group">
                                     <input class="btn btn-primary" type="submit" name="action" value="Update">
-                                    <input class="btn btn-danger" type="button" value="Cancel" onclick='window.location.href = "<?= BASE_URL . "/movie/detail/$id" ?>"'>
+                                    <input class="btn btn-danger" type="button" value="Cancel" onclick='window.location.href = "<?= BASE_URL . "/book/show/$id" ?>"'>
                                 </div>
                             </div>
                         </form>

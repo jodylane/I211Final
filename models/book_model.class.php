@@ -67,7 +67,7 @@ class BookModel {
     }
 
     public function view_book($id) {
-        $sql = "SELECT *
+        $sql = "SELECT $this->tblBook.*, $this->tblBookCategory.category
           FROM $this->tblBook, $this->tblBookCategory
           WHERE $this->tblBook.category_id= $this->tblBookCategory.id
             AND $this->tblBook.id='$id'";
@@ -123,6 +123,53 @@ class BookModel {
             image='$image',
             description='$description'
           WHERE id='$id'";
+
+        return $this->dbConnection->query($sql);
+    }
+
+    public function create_book() {
+        if (!filter_has_var(INPUT_POST, 'title') ||
+            !filter_has_var(INPUT_POST, 'isbn') ||
+            !filter_has_var(INPUT_POST, 'author') ||
+            !filter_has_var(INPUT_POST, 'category') ||
+            !filter_has_var(INPUT_POST, 'publish-date') ||
+            !filter_has_var(INPUT_POST, 'publisher') ||
+            !filter_has_var(INPUT_POST, 'image') ||
+            !filter_has_var(INPUT_POST, 'description')) {
+
+            return false;
+        }
+
+        $title = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING)));
+        $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
+        $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
+        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish_date', FILTER_DEFAULT)));
+        $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
+        $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
+        $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
+
+        $sql = "INSERT
+          INTO $this->tblBook(
+            title,
+            isbn,
+            author,
+            category_id,
+            publish_date,
+            publisher,
+            image,
+            description
+          )
+          VALUES(
+            title='$title',
+            isbn='$isbn',
+            author='$author',
+            category_id='$category',
+            publish_date='$publish_date',
+            publisher='$publisher',
+            image='$image',
+            description='$description'
+          )";
 
         return $this->dbConnection->query($sql);
     }

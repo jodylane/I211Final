@@ -205,15 +205,16 @@ class BookModel {
     public function search_book($terms) {
         $terms = explode(" ", $terms);
 
-        $termsLength = sizeof($terms);
+        $sql = "SELECT
+          $this->tblBook.*, $this->tblBookCategory.category
+          FROM $this->tblBook, $this->tblBookCategory
+          WHERE $this->tblBook.category_id=$this->tblBookCategory.id AND (1";
 
-        $sql = "SELECT * FROM " . $this->db->getBookTable() . " WHERE TITLE LIKE '%" . $terms[0] . "%'";
-
-        if($termsLength > 1) {
-            for($x = 1; $x < $termsLength; $x++) {
-                $sql .= " AND TITLE LIKE '%" . $terms[$x] . "%'";
-            }
+        foreach ($terms as $term) {
+            $sql .= " AND title LIKE '%" . $term . "%'";
         }
+
+        $sql .= ")";
 
         $query = $this->dbConnection->query($sql);
 
@@ -228,7 +229,7 @@ class BookModel {
         $books = array();
 
         while ($obj = $query->fetch_object()) {
-            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category_id, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
+            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
 
             //set the id for the movie
             $book->setId($obj->id);

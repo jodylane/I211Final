@@ -28,13 +28,19 @@ class BookShow extends BookIndexView
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
             $image = BASE_URL . '/' . BOOK_IMG . $image;
         }
+        if ($confirm != "") {
+            ?>
+            <div class="row">
+                <div class="alert alert-success col-md-3 col-md-offset-8 alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <?= $confirm ?></div>
+            </div>
+            <?php
+
+        }
         ?>
-        <div class="row">
-            <div class="alert alert-success col-md-3 col-md-offset-8 alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <?= $confirm ?></div>
-        </div>
+
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
@@ -58,8 +64,9 @@ class BookShow extends BookIndexView
                                 <p><strong>Publisher: </strong><?= $publisher ?></p>
 
                                 <p><strong>Publish Date: </strong><?= $publish_date ?></p>
-                                <a href="<?= BASE_URL ?>/book/index">Go to book list</a> |
-                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a>
+                                <a href="<?= BASE_URL ?>/book/index">Back</a> |
+                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
+                                <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
                             </div>
                         </div>
                         <div class="row book-desc">

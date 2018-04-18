@@ -7,15 +7,15 @@
  */
 
 class UserModel {
-
-    //private class properties
+    private $db, $dbConnection, $tblUser, $tblUserBook;
     static private $_instance = NULL;
-    private $users_json;
 
     //constructor
     private function __construct() {
-        $users_str = file_get_contents(dirname(__FILE__, 1) . "/users.json");
-        $this->users_json = json_decode($users_str, true);
+        $this->db = Database::getDatabase();
+        $this->dbConnection = $this->db->getConnection();
+        $this->tblUser = $this->db->getUserTable();
+        $this->tblUserBook = $this->db->getUserBookTable();
     }
 
     //static method to ensure there is just one MovieModel instance
@@ -26,11 +26,4 @@ class UserModel {
         return self::$_instance;
     }
 
-    //validate username and password
-    public function validateUser($username, $password) {
-        if ($username && $password && $this->users_json[$username] == $password) {
-            return true;
-        }
-            return false;
-    }
 }

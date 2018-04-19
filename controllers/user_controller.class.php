@@ -46,7 +46,7 @@ class UserController {
         $view = new UserLogin();
         $view->display();
     }
-    
+
     //logout
     public function logout() {
         // logout should reroute back to welcome controller no need for a logout view

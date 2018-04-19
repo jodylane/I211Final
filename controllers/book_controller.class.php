@@ -15,12 +15,7 @@ class BookController {
     }
 
     public function index() {
-
         $books = $this->book_model->list_books();
-        if(isset($_SESSION['user'])) {
-
-            echo $_SESSION['user']->fullName();
-        }
         if(!$books) {
             $message = "There was a problem displaying books.";
             $this->error($message);

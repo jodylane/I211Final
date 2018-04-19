@@ -64,16 +64,9 @@ class BookShow extends BookIndexView
                                 <p><strong>Publisher: </strong><?= $publisher ?></p>
 
                                 <p><strong>Publish Date: </strong><?= $publish_date ?></p>
-                                <a href="<?= BASE_URL ?>/book/index">Back</a>
-                                <?php
-                                if ($_SESSION['user']->getRole() == 'admin') {
-                                    ?>
-                                    |
-                                    <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
-                                    <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
-                                    <?php
-                                }
-                                ?>
+                                <a href="<?= BASE_URL ?>/book/index">Back</a> |
+                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
+                                <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
 
                             </div>
                         </div>

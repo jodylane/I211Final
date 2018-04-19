@@ -103,14 +103,14 @@ class BookModel {
             return false;
         }
 
-        $title = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING)));
-        $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
-        $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
-        $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
-        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish_date', FILTER_DEFAULT)));
-        $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
-        $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
-        $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
+        $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+        $isbn = trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING));
+        $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
+        $publish_date = trim(filter_input(INPUT_POST, 'publish-date', FILTER_DEFAULT));
+        $publisher = trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING));
+        $image = trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING));
+        $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
         $sql = "UPDATE $this->tblBook
           SET
@@ -148,14 +148,14 @@ class BookModel {
             return false;
         }
 
-        $title = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING)));
-        $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
-        $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
-        $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
-        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish-date', FILTER_DEFAULT)));
-        $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
-        $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
-        $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
+        $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+        $isbn = trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING));
+        $author = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
+        $publish_date = trim(filter_input(INPUT_POST, 'publish-date', FILTER_DEFAULT));
+        $publisher = trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING));
+        $image = trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING));
+        $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
         $sql = "INSERT
           INTO $this->tblBook(

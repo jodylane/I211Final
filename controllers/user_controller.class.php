@@ -12,31 +12,24 @@ class UserController {
         $this->user_model = UserModel::getUserModel();
     }
 
-    public function signUp(){
-        $view = new SignUp();
+    public function signup(){
+        $view = new UserSignup();
         $view->display();
     }
 
     public function create(){
-        $this->user_model->create_user();
-
-        //commented out because no error class
-        /*
+        $created = $this->user_model->create_user();
         if(!$created) {
-            $message = "There was a problem signing you up";
+            $message = "something went wrong and your user could not be registered.";
             $this->error($message);
             return;
         }
-        */
-
-        //need to add show users
-        $bookController = new BookController();
-        $bookController->index();
+//        header('Location: ' . BASE_URL . '/book/index');
     }
 
     //display login form
     public function login() {
-        $view = new Login();
+        $view = new UserLogin();
         $view->display();
     }
 
@@ -51,7 +44,7 @@ class UserController {
             $view = new Dashboard();
             $view->display($username);
         } else {
-            $view = new Login();
+            $view = new UserLogin();
             $view->display("Login failed");
         }
     }
@@ -59,11 +52,14 @@ class UserController {
     //logout
     public function logout() {
         // logout should reroute back to welcome controller no need for a logout view
-        $view = new Logout();
+        $view = new UserLogout();
         $view->display();
     }
 
-
+    public function error($message) {
+        $view = new UserError();
+        $view->display($message);
+    }
     //handle inaccessible methods
     public function __call($name, $arguments) {
         $message = "Calling method '$name' caused errors. Route does not exist.";

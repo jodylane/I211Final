@@ -24,9 +24,6 @@ class UserModel {
         foreach ($_GET as $key => $value) {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
-
-
-
     }
 
     //static method to ensure there is just one MovieModel instance
@@ -36,7 +33,6 @@ class UserModel {
         }
         return self::$_instance;
     }
-
 
     public function create_user(){
         if (!filter_has_var(INPUT_POST, 'firstName') ||
@@ -48,11 +44,11 @@ class UserModel {
             return false;
             }
 
-        $firstName = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING)));
-        $lastName = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING)));
-        $role = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING)));
-        $email = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING)));
-        $password = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING)));
+        $firstName = trim(filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING));
+        $lastName = trim(filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING));
+        $role = trim(filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING));
+        $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
+        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
 
         $sql = "INSERT 
             INTO $this->tblUsers(
@@ -72,9 +68,9 @@ class UserModel {
             '$password'
             )";
 
+        echo $sql;
+
         return $this->dbConnection->query($sql);
-
-
         }
 
     //validate username and password

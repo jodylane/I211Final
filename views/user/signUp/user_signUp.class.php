@@ -6,7 +6,7 @@
  * Time: 5:50 PM
  */
 
-class SignUp extends IndexView {
+class UserSignup extends UserIndexView {
     public function display()
     {
         parent::displayHeader("User Sign up")

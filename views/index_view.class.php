@@ -43,7 +43,7 @@ class IndexView {
                     <ul class="nav navbar-nav">
 
                         <li class="active"><a href="<?= BASE_URL . "/book/index" ?>">Book Index<span class="sr-only">(current)</span></a></li>
-                        <li><a href="<?= BASE_URL . "/user/signUp" ?>">Add User</a></li>
+                        <li><a href="<?= BASE_URL . "/user/signup" ?>">Add User</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -76,8 +76,8 @@ class IndexView {
                                 ?>
                                 
                                 
-                                <li><a href="<?= BASE_URL ?> views/login">Login</a></li>
-                                <li><a href="<?= BASE_URL ?> views/signup">Signup</a></li>
+                                <li><a href="<?= BASE_URL ?>/user/login">Login</a></li>
+                                <li><a href="<?= BASE_URL ?>/user/signup">Signup</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Help</a></li>
                             </ul>

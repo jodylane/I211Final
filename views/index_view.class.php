@@ -65,7 +65,7 @@ class IndexView {
                                 
                                 <?php
                                 /**
-                                if(!isset($_SESSION)){
+                                if(!isset($_SESSION['user'])){
                                 //then show login button
                                 }
                                 else{
@@ -77,6 +77,7 @@ class IndexView {
                                 
                                 <li><a href="<?= BASE_URL ?>/user/login">Login</a></li>
                                 <li><a href="<?= BASE_URL ?>/user/signup">Signup</a></li>
+                                <li><a href="<?= BASE_URL ?>/user/logout">Logout</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Help</a></li>
                             </ul>

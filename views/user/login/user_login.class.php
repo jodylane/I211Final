@@ -22,7 +22,7 @@ class UserLogin extends UserIndexView
                     <div class="panel-body">
                         <form class="col-md-10 col-md-offset-1">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                <label for="inputEmail3" class="control-label">Email</label>
                                 <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
 
                             </div>

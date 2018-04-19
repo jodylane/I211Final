@@ -35,7 +35,7 @@ class IndexView {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="<?= BASE_URL ?>/welcome"><img src='<?= BASE_URL ?>/www/img/logo.png'</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

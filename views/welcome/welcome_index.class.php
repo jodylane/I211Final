@@ -17,13 +17,13 @@ class WelcomeIndex extends IndexView {
         <div id="thumbnails">
             <p>What would you like to do?</p>
             
-            <a href="<?= BASE_URL ?>/index">
+            <a href="<?= BASE_URL ?>/book">
                 <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Library" />
             </a>
-            <a href="<?= BASE_URL ?>/views/login">
+            <a href="<?= BASE_URL ?>/user/login">
                 <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Login"/>
             </a>
-            <a href="<?= BASE_URL ?>/view/signup">
+            <a href="<?= BASE_URL ?>/user/signup">
                 <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Sign Up"/>
             </a>
         </div>

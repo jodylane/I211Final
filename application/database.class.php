@@ -14,7 +14,9 @@ class Database {
         'password' => 'phpuser',
         'database' => 'indylibrary_db',
         'tblBook' => 'books',
-        'tblBookCategory' => 'books_categories'
+        'tblBookCategory' => 'books_categories',
+        'tblUser' => 'users',
+        'tblUserBooks' => 'users_books'
     );
 
     private $objDBConnection = NULL;
@@ -47,5 +49,13 @@ class Database {
 
     public function getBookCategoryTable() {
         return $this->params['tblBookCategory'];
+    }
+
+    public function getUserTable(){
+        return $this->params['tblUser'];
+    }
+
+    public function getUserBooksTable(){
+        return $this->params['tblUserBooks'];
     }
 }

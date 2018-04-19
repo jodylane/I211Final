@@ -25,6 +25,7 @@ return array(
     'IndexView' => $baseDir . '/views/index_view.class.php',
     'Login' => $baseDir . '/views/login/login.class.php',
     'Logout' => $baseDir . '/views/login/logout.class.php',
+    'SignUp' => $baseDir . '/views/user/signUp/user_signUp.class.php',
     'UserController' => $baseDir . '/controllers/user_controller.class.php',
     'UserModel' => $baseDir . '/models/user_model.class.php',
     'WelcomeController' => $baseDir . '/controllers/welcome_controller.class.php',

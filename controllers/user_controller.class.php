@@ -12,6 +12,28 @@ class UserController {
         $this->user_model = UserModel::getUserModel();
     }
 
+    public function signUp(){
+        $view = new SignUp();
+        $view->display();
+    }
+
+    public function create(){
+        $this->user_model->create_user();
+
+        //commented out because no error class
+        /*
+        if(!$created) {
+            $message = "There was a problem signing you up";
+            $this->error($message);
+            return;
+        }
+        */
+
+        //need to add show users
+        $bookController = new BookController();
+        $bookController->index();
+    }
+
     //display login form
     public function login() {
         $view = new Login();

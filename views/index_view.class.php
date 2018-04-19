@@ -63,8 +63,21 @@ class IndexView {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Login/Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?= BASE_URL ?> views/user/login">Login</a></li>
-                                <li><a href="<?= BASE_URL ?> views/user/logout">Logout</a></li>
+                                
+                                <?php
+                                /**
+                                if(!isset($_SESSION)){
+                                //then show login button
+                                }
+                                else{
+                                //show logout button
+                                }
+                                 */
+                                ?>
+                                
+                                
+                                <li><a href="<?= BASE_URL ?> views/login">Login</a></li>
+                                <li><a href="<?= BASE_URL ?> views/signup">Signup</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Help</a></li>
                             </ul>

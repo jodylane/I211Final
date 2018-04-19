@@ -58,26 +58,35 @@ class IndexView {
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        
+                        <?php 
+                        if ($_SESSION['user']->getRole() == 'admin') {
+                        ?>
+                        
                         <li><a href="<?= BASE_URL . "/book/add" ?>">Create Book</a></li>
+                        
+                        <?php
+                        }
+                        ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Login/Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 
                                 <?php
-                                /**
                                 if(!isset($_SESSION['user'])){
-                                //then show login button
-                                }
-                                else{
-                                //show logout button
-                                }
-                                 */
-                                ?>
-                                
-                                
+                                    ?>
                                 <li><a href="<?= BASE_URL ?>/user/login">Login</a></li>
                                 <li><a href="<?= BASE_URL ?>/user/signup">Signup</a></li>
+                                
+                                <?php
+                                }
+                                else{
+                                ?>    
                                 <li><a href="<?= BASE_URL ?>/user/logout">Logout</a></li>
+                                <?php
+                                }
+                               ?>
+                              
+                              
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Help</a></li>
                             </ul>

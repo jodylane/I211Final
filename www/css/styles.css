@@ -62,6 +62,9 @@ textarea {
     cursor: pointer;
 }
 
+.logo {
+    height: 50px !important;
+}
 
 .footer {
     height: 50px;

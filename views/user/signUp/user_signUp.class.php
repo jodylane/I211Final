@@ -23,12 +23,12 @@ class UserSignup extends UserIndexView {
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="firstName">First Name:</label>
-                                        <input class="form-control" id="firstName" placeholder="ex. Blake" name="firstName">
+                                        <input class="form-control" id="firstName" placeholder="ex. Blake" name="firstName" required>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="lastName">Last Name:</label>
-                                        <input class="form-control" id="lastName" placeholder="ex. Robertson" name="lastName">
+                                        <input class="form-control" id="lastName" placeholder="ex. Robertson" name="lastName" required>
                                     </div>
 
                                 </div>
@@ -48,7 +48,7 @@ class UserSignup extends UserIndexView {
 
                                     <div class="form-group col-md-12">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="ex. Blake@gmail.com" name="email" >
+                                        <input type="email" class="form-control" id="email" placeholder="ex. Blake@gmail.com" name="email" required>
                                         <small id="emailHelp" class="form-text text-muted">Required</small>
 
                                     </div>
@@ -59,7 +59,7 @@ class UserSignup extends UserIndexView {
 
                                     <div class="form-group col-md-12">
                                         <label for="pwd">Password:</label>
-                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" >
+                                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                                         <small id="pwdHelp" class="form-text text-muted">Required</small>
                                     </div>
                                 </div>

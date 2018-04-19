@@ -9,7 +9,7 @@
 class UserLogin extends UserIndexView
 {
 
-    public function display($message = "")
+    public function display()
     {
         parent::displayHeader("Login");
         ?>
@@ -20,24 +20,25 @@ class UserLogin extends UserIndexView
                         <h3 class="panel-title">Log In</h3>
                     </div>
                     <div class="panel-body">
-                        <form class="col-md-10 col-md-offset-1">
+                        <form class="col-md-10 col-md-offset-1" action='<?= BASE_URL . "/user/signin" ?>' method="post" >
+
                             <div class="form-group">
                                 <label for="inputEmail3" class="control-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
 
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword3"
+                                <input type="password" name="password" class="form-control" id="inputPassword3"
                                        placeholder="Password">
                             </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
-                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <div class="checkbox">-->
+<!--                                    <label>-->
+<!--                                        <input type="checkbox"> Remember me-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default">Sign in</button>
                             </div>

@@ -13,6 +13,13 @@ class BookIndex extends BookIndexView
     {
         parent::displayHeader("List All Books");
 
+        if (isset($_SESSION['user'])) {
+            $d = $_SESSION['user'];
+        } else {
+            echo "helo";
+        }
+        echo $d->fullName();
+
         if ($confirm != "") {
             ?>
             <div class="row">

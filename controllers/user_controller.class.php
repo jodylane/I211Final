@@ -24,29 +24,27 @@ class UserController {
             $this->error($message);
             return;
         }
-//        header('Location: ' . BASE_URL . '/book/index');
+        header('Location: ' . BASE_URL . '/book/index');
+    }
+
+    public function signin()
+    {
+        $login = $this->user_model->login_user();
+
+        echo $_SESSION['user']->fullName();
+        if (!$login) {
+            $message = "There was an issue trying to login.";
+            $this->error($message);
+            return;
+        }
+
+        header('Location: ' . BASE_URL . '/book/index');
     }
 
     //display login form
     public function login() {
         $view = new UserLogin();
         $view->display();
-    }
-
-    // the model should handle this not the controller
-    //validate username and password
-    public function validate() {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        
-        if ($this->user_model->validateUser($username, $password)) {
-            $view = new Dashboard();
-            $view->display($username);
-        } else {
-            $view = new UserLogin();
-            $view->display("Login failed");
-        }
     }
     
     //logout

@@ -61,13 +61,12 @@ class IndexView {
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<?= BASE_URL . "/book/add" ?>">Create Book</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Login/Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?= BASE_URL ?> /user/login">Login</a></li>
-                                <li><a href="<?= BASE_URL ?> /user/logout">Logout</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="<?= BASE_URL ?> views/user/login">Login</a></li>
+                                <li><a href="<?= BASE_URL ?> views/user/logout">Logout</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">Help</a></li>
                             </ul>
                         </li>
                     </ul>

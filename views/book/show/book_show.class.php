@@ -7,9 +7,11 @@
  * Time: 2:02 PM
  * Description: This file was created to
  */
-class BookShow extends BookIndexView {
+class BookShow extends BookIndexView
+{
 
-    public function display($book) {
+    public function display($book, $confirm = "")
+    {
         parent::displayHeader("Page Title");
 
         $id = $book->getId();
@@ -24,9 +26,21 @@ class BookShow extends BookIndexView {
         $description = $book->getDescription();
 
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
-        $image = BASE_URL . '/' . BOOK_IMG . $image;
+            $image = BASE_URL . '/' . BOOK_IMG . $image;
+        }
+        if ($confirm != "") {
+            ?>
+            <div class="row">
+                <div class="alert alert-success col-md-3 col-md-offset-8 alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <?= $confirm ?></div>
+            </div>
+            <?php
+
         }
         ?>
+
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
@@ -39,14 +53,20 @@ class BookShow extends BookIndexView {
                                 <img src="<?= $image ?>" alt="<?= $title ?>"/>
                             </div>
                             <div class="col-md-8">
-                                <p><strong>Title: </strong><?= $title?></p>
-                                <p><strong>Author: </strong><?= $author?></p>
-                                <p><strong>Genre: </strong><?= $category?></p>
-                                <p><strong>ISBN: </strong><?= $isbn?></p>
-                                <p><strong>Publisher: </strong><?= $publisher?></p>
-                                <p><strong>Publish Date: </strong><?= $publish_date?></p>
-                                <a href="<?= BASE_URL ?>/book/index">Go to book list</a> |
-                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a>
+                                <p><strong>Title: </strong><?= $title ?></p>
+
+                                <p><strong>Author: </strong><?= $author ?></p>
+
+                                <p><strong>Genre: </strong><?= $category ?></p>
+
+                                <p><strong>ISBN: </strong><?= $isbn ?></p>
+
+                                <p><strong>Publisher: </strong><?= $publisher ?></p>
+
+                                <p><strong>Publish Date: </strong><?= $publish_date ?></p>
+                                <a href="<?= BASE_URL ?>/book/index">Back</a> |
+                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
+                                <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
                             </div>
                         </div>
                         <div class="row book-desc">
@@ -58,7 +78,6 @@ class BookShow extends BookIndexView {
                 </div>
             </div>
         </div>
-
 
 
         <?php

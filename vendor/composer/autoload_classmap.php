@@ -7,8 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Book' => $baseDir . '/models/book.class.php',
+    'BookAdd' => $baseDir . '/views/book/add/book_add.class.php',
     'BookController' => $baseDir . '/controllers/book_controller.class.php',
-    'BookCreate' => $baseDir . '/views/book/create/book_create.class.php',
     'BookEdit' => $baseDir . '/views/book/edit/book_edit.class.php',
     'BookError' => $baseDir . '/views/book/error/book_error.class.php',
     'BookIndex' => $baseDir . '/views/book/index/book_index.class.php',
@@ -19,9 +19,15 @@ return array(
     'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0' => $vendorDir . '/composer/autoload_static.php',
+    'Dashboard' => $baseDir . '/views/login/dashboard.class.php',
     'Database' => $baseDir . '/application/database.class.php',
     'Dispatcher' => $baseDir . '/application/dispatcher.class.php',
     'IndexView' => $baseDir . '/views/index_view.class.php',
+    'Login' => $baseDir . '/views/login/login.class.php',
+    'Logout' => $baseDir . '/views/login/logout.class.php',
+    'SignUp' => $baseDir . '/views/user/signUp/user_signUp.class.php',
+    'UserController' => $baseDir . '/controllers/user_controller.class.php',
+    'UserModel' => $baseDir . '/models/user_model.class.php',
     'WelcomeController' => $baseDir . '/controllers/welcome_controller.class.php',
     'WelcomeIndex' => $baseDir . '/views/welcome/welcome_index.class.php',
 );

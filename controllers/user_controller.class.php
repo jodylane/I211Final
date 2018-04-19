@@ -1,18 +1,37 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+/*
+ * Name: {brad update these two fields}
+ * Description: {brad update these two fields}
+ *
+ * */
 class UserController {
-
     private $user_model;
 
     //constructor
     public function __construct() {
         $this->user_model = UserModel::getUserModel();
+    }
+
+    public function signUp(){
+        $view = new SignUp();
+        $view->display();
+    }
+
+    public function create(){
+        $this->user_model->create_user();
+
+        //commented out because no error class
+        /*
+        if(!$created) {
+            $message = "There was a problem signing you up";
+            $this->error($message);
+            return;
+        }
+        */
+
+        //need to add show users
+        $bookController = new BookController();
+        $bookController->index();
     }
 
     //display login form
@@ -21,6 +40,7 @@ class UserController {
         $view->display();
     }
 
+    // the model should handle this not the controller
     //validate username and password
     public function validate() {
         $username = $_POST['username'];
@@ -38,6 +58,7 @@ class UserController {
     
     //logout
     public function logout() {
+        // logout should reroute back to welcome controller no need for a logout view
         $view = new Logout();
         $view->display();
     }

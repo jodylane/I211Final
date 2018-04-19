@@ -37,6 +37,9 @@ window.onclick = function () {
 //set and send XMLHttp request. The parameter is the search term
 function suggest(query) {
     //if the search term is empty, clear the suggestion box.
+    console.log("query");
+    console.log(query);
+
     if (query === "") {
         suggestionBoxObj.innerHTML = "";
         return;
@@ -67,6 +70,12 @@ function suggest(query) {
  * The parameter of the function is a JSON object
  * */
 function displayTitles(titles) {
+
+    console.log("display Titles");
+    console.log(titles);
+
+    suggestionBoxObj.innerHTML = "";
+
     numTitles = titles.length;
 
     activeTitle = -1;
@@ -79,7 +88,7 @@ function displayTitles(titles) {
     var divContent = "";
     //retrive the titles from the JSON doc and create a new span for each title
     for (i = 0; i < titles.length; i++) {
-        divContent += "<span class='list-group-item' id='s_" + i + "' onclick='clickTitle(this)'>" + titles[i] + "</span>";
+        divContent += "<div class='list-group-item' id='s_" + i + "' onclick='clickTitle(this)'>" + titles[i] + "</div>";
     }
     //display the spans in the div block
     suggestionBoxObj.innerHTML += divContent;

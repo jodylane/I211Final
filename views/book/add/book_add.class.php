@@ -4,55 +4,40 @@
  * Created by PhpStorm.
  * User: Josh Lane
  * Date: 4/5/2018
- * Time: 2:02 PM
+ * Time: 2:03 PM
  * Description: This file was created to
  */
-class BookEdit extends BookIndexView {
-    public function display($book) {
-        parent::displayHeader("Edit Book Details");
-
+class BookAdd extends BookIndexView {
+    public function display(){
+        parent::displayHeader('New Book');
         if (isset($_SESSION['book_categories'])) {
             $categories = $_SESSION['book_categories'];
         }
 
-        $id = $book->getId();
-        $title = $book->getTitle();
-        $isbn = $book->getIsbn();
-        $author = $book->getAuthor();
-        $category = $book->getCategory();
-        $publish_date = new \DateTime($book->getPublishDate());
-        $publish_date = $publish_date->format('m-d-Y');
-        $publisher = $book->getPublisher();
-        $image = $book->getImage();
-        $description = $book->getDescription();
-
-        if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
-            $image = BASE_URL . '/' . BOOK_IMG . $image;
-        }
         ?>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading ">
-                        <h3 class="panel-title">Edit Book Details</h3>
+                        <h3 class="panel-title">Create Book</h3>
                     </div>
                     <div class="panel-body">
-                        <form action='<?= BASE_URL . "/book/update/$id" ?>' method="post">
+                        <form action='<?= BASE_URL . "/book/create" ?>' method="post">
                             <div class="col-md-10 col-md-offset-1">
-                                <input type="hidden" name="id" value="<?= $id ?>">
+                                <input type="hidden" name="id">
                                 <div class="form-group">
-                                    <input class="form-control" name="title" value="<?= $title ?>"/>
+                                    <input class="form-control" name="title" placeholder="Title"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="isbn" value="<?= $isbn ?>"/>
+                                    <input class="form-control" name="isbn" placeholder="ISBN"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="author" value="<?= $author ?>"/>
+                                    <input class="form-control" name="author" placeholder="Author"/>
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
                                     foreach ($categories as $b_category => $b_id) {
-                                        $checked = ($category == $b_category ) ? "checked" : "";
+                                        $checked = "";
 
                                         if (($b_id - 1) % 5 == 0) {
                                             echo "<div class='col-md-12'>";
@@ -67,20 +52,20 @@ class BookEdit extends BookIndexView {
                                     ?>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publish-date" value="<?= $publish_date ?>"/>
+                                    <input class="form-control" name="publish-date" placeholder="Publish Date mm/dd/yyyy"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publisher" value="<?= $publisher ?>"/>
+                                    <input class="form-control" name="publisher" placeholder="Publisher"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="image" value="<?= $image ?>"/>
+                                    <input class="form-control" name="image" placeholder="Image URL"/>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="description" rows="8"><?= $description ?></textarea>
+                                    <textarea class="form-control" name="description" placeholder="Description" rows="8"></textarea>
                                 </div>
                                 <div class="text-center form-group">
-                                    <input class="btn btn-primary" type="submit" name="action" value="Update">
-                                    <input class="btn btn-danger" type="button" value="Cancel" onclick='window.location.href = "<?= BASE_URL . "/book/show/$id" ?>"'>
+                                    <input class="btn btn-primary" type="submit" name="action" value="Create">
+                                    <input class="btn btn-danger" type="button" value="Cancel" onclick='window.location.href = "<?= BASE_URL . "/book/index" ?>"'>
                                 </div>
                             </div>
                         </form>
@@ -88,7 +73,6 @@ class BookEdit extends BookIndexView {
                 </div>
             </div>
         </div>
-
         <?php
         parent::displayFooter();
     }

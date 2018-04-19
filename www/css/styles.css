@@ -46,29 +46,23 @@ textarea {
     min-width: 100%;
 }
 
+.searchBar {
+    position: relative;
+}
+
 #suggestionDiv {
     position: absolute;
-    top: 51px;
-    left: 18%;
+    top: 34px;
+    left: 26px;
     z-index: 99;
 }
 
-.list-group span.list-group-item:hover {
+.list-group div.list-group-item:hover {
     background-color: #f5f5f5;
     cursor: pointer;
 }
 
-.navbar-form {
-    width: 40% !important;
-}
 
-.navbar-form .form-group {
-    width: calc(100% - 85px);
-}
-
-.navbar-form .form-group .form-control {
-    width: 100%;
-}
 .footer {
     height: 50px;
     background-color: #e7e7e7;

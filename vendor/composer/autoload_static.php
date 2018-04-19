@@ -8,8 +8,8 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
 {
     public static $classMap = array (
         'Book' => __DIR__ . '/../..' . '/models/book.class.php',
+        'BookAdd' => __DIR__ . '/../..' . '/views/book/add/book_add.class.php',
         'BookController' => __DIR__ . '/../..' . '/controllers/book_controller.class.php',
-        'BookCreate' => __DIR__ . '/../..' . '/views/book/create/book_create.class.php',
         'BookEdit' => __DIR__ . '/../..' . '/views/book/edit/book_edit.class.php',
         'BookError' => __DIR__ . '/../..' . '/views/book/error/book_error.class.php',
         'BookIndex' => __DIR__ . '/../..' . '/views/book/index/book_index.class.php',
@@ -20,9 +20,15 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
         'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_static.php',
+        'Dashboard' => __DIR__ . '/../..' . '/views/login/dashboard.class.php',
         'Database' => __DIR__ . '/../..' . '/application/database.class.php',
         'Dispatcher' => __DIR__ . '/../..' . '/application/dispatcher.class.php',
         'IndexView' => __DIR__ . '/../..' . '/views/index_view.class.php',
+        'Login' => __DIR__ . '/../..' . '/views/login/login.class.php',
+        'Logout' => __DIR__ . '/../..' . '/views/login/logout.class.php',
+        'SignUp' => __DIR__ . '/../..' . '/views/user/signUp/user_signUp.class.php',
+        'UserController' => __DIR__ . '/../..' . '/controllers/user_controller.class.php',
+        'UserModel' => __DIR__ . '/../..' . '/models/user_model.class.php',
         'WelcomeController' => __DIR__ . '/../..' . '/controllers/welcome_controller.class.php',
         'WelcomeIndex' => __DIR__ . '/../..' . '/views/welcome/welcome_index.class.php',
     );

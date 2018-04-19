@@ -11,7 +11,7 @@ class BookModel {
     private $db, $dbConnection, $tblBook, $tblBookCategory;
     static private $_instance = NULL;
 
-    public function __construct () {
+    public function __construct() {
         $this->db = Database::getDatabase();
         $this->dbConnection = $this->db->getConnection();
         $this->tblBook = $this->db->getBookTable();
@@ -31,7 +31,7 @@ class BookModel {
         }
     }
 
-    public static function getBookModel () {
+    public static function getBookModel() {
         if (self::$_instance == NULL) {
             self::$_instance = new BookModel();
         }
@@ -66,8 +66,8 @@ class BookModel {
         return $books;
     }
 
-    public function view_book ($id) {
-        $sql = "SELECT *
+    public function view_book($id) {
+        $sql = "SELECT $this->tblBook.*, $this->tblBookCategory.category
           FROM $this->tblBook, $this->tblBookCategory
           WHERE $this->tblBook.category_id= $this->tblBookCategory.id
             AND $this->tblBook.id='$id'";
@@ -90,7 +90,7 @@ class BookModel {
         return false;
     }
 
-    public function update_book ($id) {
+    public function update_book($id) {
         if (!filter_has_var(INPUT_POST, 'title') ||
             !filter_has_var(INPUT_POST, 'isbn') ||
             !filter_has_var(INPUT_POST, 'author') ||
@@ -127,7 +127,64 @@ class BookModel {
         return $this->dbConnection->query($sql);
     }
 
-    public function getBookCategories () {
+    public function destroy_book($id) {
+        $sql = "DELETE
+            FROM $this->tblBook
+            WHERE id='$id'";
+
+        return $this->dbConnection->query($sql);
+    }
+
+    public function create_book() {
+        if (!filter_has_var(INPUT_POST, 'title') ||
+            !filter_has_var(INPUT_POST, 'isbn') ||
+            !filter_has_var(INPUT_POST, 'author') ||
+            !filter_has_var(INPUT_POST, 'category') ||
+            !filter_has_var(INPUT_POST, 'publish-date') ||
+            !filter_has_var(INPUT_POST, 'publisher') ||
+            !filter_has_var(INPUT_POST, 'image') ||
+            !filter_has_var(INPUT_POST, 'description')) {
+
+            return false;
+        }
+
+        $title = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING)));
+        $isbn = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_STRING)));
+        $author = $this->dbConnection->real_escape_string(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+        $category = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING)));
+        $publish_date = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publish-date', FILTER_DEFAULT)));
+        $publisher = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'publisher', FILTER_SANITIZE_STRING)));
+        $image = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING)));
+        $description = $this->dbConnection->real_escape_string(trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)));
+
+        $sql = "INSERT
+          INTO $this->tblBook(
+            id,
+            title,
+            isbn,
+            author,
+            category_id,
+            publish_date,
+            publisher,
+            image,
+            description
+          )
+          VALUES(
+            NULL,
+            '$title',
+            '$isbn',
+            '$author',
+            '$category',
+            '$publish_date',
+            '$publisher',
+            '$image',
+            '$description'
+          )";
+
+        return $this->dbConnection->query($sql);
+    }
+
+    public function getBookCategories() {
         $sql = "SELECT * FROM " . $this->tblBookCategory;
 
         $query = $this->dbConnection->query($sql);
@@ -143,18 +200,21 @@ class BookModel {
         return $categories;
     }
 
+
+
     public function search_book($terms) {
         $terms = explode(" ", $terms);
 
-        $termsLength = sizeof($terms);
+        $sql = "SELECT
+          $this->tblBook.*, $this->tblBookCategory.category
+          FROM $this->tblBook, $this->tblBookCategory
+          WHERE $this->tblBook.category_id=$this->tblBookCategory.id AND (1";
 
-        $sql = "SELECT * FROM " . $this->db->getBookTable() . " WHERE TITLE LIKE '%" . $terms[0] . "%'";
-
-        if($termsLength > 1) {
-            for($x = 1; $x < $termsLength; $x++) {
-                $sql .= " AND TITLE LIKE '%" . $terms[$x] . "%'";
-            }
+        foreach ($terms as $term) {
+            $sql .= " AND title LIKE '%" . $term . "%'";
         }
+
+        $sql .= ")";
 
         $query = $this->dbConnection->query($sql);
 
@@ -169,7 +229,7 @@ class BookModel {
         $books = array();
 
         while ($obj = $query->fetch_object()) {
-            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category_id, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
+            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
 
             //set the id for the movie
             $book->setId($obj->id);

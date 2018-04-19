@@ -8,7 +8,7 @@
  * Description: This file was created to
  */
 class IndexView {
-    public static function displayHeader ($title) {
+    public static function displayHeader($title) {
         ?>
         <!DOCTYPE html>
         <html>
@@ -41,8 +41,9 @@ class IndexView {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
+
+                        <li class="active"><a href="<?= BASE_URL . "/book/index" ?>">Book Index<span class="sr-only">(current)</span></a></li>
+                        <li><a href="<?= BASE_URL . "/user/signUp" ?>">Add User</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -56,14 +57,9 @@ class IndexView {
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" method="get" action="<?= BASE_URL ?>/book/search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" autocomplete="off" name="query-terms" placeholder="Search" onkeyup="handleKeyUp(event)">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
+                        <li><a href="<?= BASE_URL . "/book/add" ?>">Create Book</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu">

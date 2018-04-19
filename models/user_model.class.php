@@ -7,21 +7,11 @@
  */
 
 class UserModel {
-
-    //private class properties
-    static private $_instance = NULL;
-    private $users_json;
     private $db, $dbConnection, $tblUsers, $tblUsersBooks;
+    static private $_instance = NULL;
 
     //constructor
     private function __construct() {
-
-        //Not sure what this is for, was getting errors
-
-        //$users_str = file_get_contents(dirname(__FILE__, 1) . "/users.json");
-        //$this->users_json = json_decode($users_str, true);
-
-
         $this->db = Database::getDatabase();
         $this->dbConnection = $this->db->getConnection();
         $this->tblUsers = $this->db->getUserTable();
@@ -35,13 +25,8 @@ class UserModel {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
 
-        //not sure if necessary for user model?
-        /*
-        if (!isset($_SESSION['book_categories'])) {
-            $categories = $this->getBookCategories();
-            $_SESSION['book_categories'] = $categories;
-        }
-        */
+
+
     }
 
     //static method to ensure there is just one MovieModel instance
@@ -51,6 +36,7 @@ class UserModel {
         }
         return self::$_instance;
     }
+
 
     public function create_user(){
         if (!filter_has_var(INPUT_POST, 'firstName') ||
@@ -98,4 +84,5 @@ class UserModel {
         }
             return false;
     }
+
 }

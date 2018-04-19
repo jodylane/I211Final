@@ -17,6 +17,7 @@ class Database {
         'tblBookCategory' => 'books_categories',
         'tblUser' => 'users',
         'tblUserBooks' => 'users_books'
+
     );
 
     private $objDBConnection = NULL;
@@ -51,11 +52,13 @@ class Database {
         return $this->params['tblBookCategory'];
     }
 
+
     public function getUserTable(){
         return $this->params['tblUser'];
     }
 
     public function getUserBooksTable(){
         return $this->params['tblUserBooks'];
+
     }
 }

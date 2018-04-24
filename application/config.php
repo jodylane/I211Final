@@ -27,3 +27,4 @@ define("BASE_URL", "http://localhost/I211/LibraryLending");
  ************************************************************************************/
 
 define("BOOK_IMG", "www/img/books/");
+define("MOVIE_IMG", "www/img/movies/");

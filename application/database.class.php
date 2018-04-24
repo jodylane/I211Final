@@ -15,6 +15,8 @@ class Database {
         'database' => 'indylibrary_db',
         'tblBook' => 'books',
         'tblBookCategory' => 'books_categories',
+        'tblMovie' => 'movies',
+        'tblMovieCategory' => 'movies_categories',
         'tblUser' => 'users',
         'tblUserBooks' => 'users_books'
 
@@ -52,6 +54,13 @@ class Database {
         return $this->params['tblBookCategory'];
     }
 
+    public function getMovieTable() {
+        return $this->params['tblMovie'];
+    }
+
+    public function getMovieCategoryTable() {
+        return $this->params['tblMovieCategory'];
+    }
 
     public function getUserTable(){
         return $this->params['tblUser'];

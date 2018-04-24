@@ -41,6 +41,11 @@ class UserModel
         return self::$_instance;
     }
 
+    public function logout() {
+        session_unset();
+        setcookie(session_name(), '', time()-3600);
+        session_destroy();
+    }
     public function login_user() {
         if (!filter_has_var(INPUT_POST, 'email') ||
         !filter_has_var(INPUT_POST, 'password')){
@@ -66,8 +71,7 @@ class UserModel
             //set the id for the book
             $user->setId($obj->id);
 
-            $_SESSION['user'] = $user;
-            return $_SESSION['user'];
+            return $user;
         }
         return false;
     }
@@ -125,8 +129,7 @@ class UserModel
             //set the id for the book
             $user->setId($obj->id);
 
-            $_SESSION['user'] = $user;
-            return $_SESSION['user'];
+            return $user;
         }
         return false;
     }

@@ -5,17 +5,17 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 1:48 PM
- * Description: This file was created to send and retrieve calls from and to the database for the books.
+ * Description: This file was created to send and retrieve calls from and to the database for the movies.
  */
-class BookModel {
-    private $db, $dbConnection, $tblBook, $tblBookCategory;
+class MovieModel {
+    private $db, $dbConnection, $tblMovie, $tblMovieCategory;
     static private $_instance = NULL;
 
     public function __construct() {
         $this->db = Database::getDatabase();
         $this->dbConnection = $this->db->getConnection();
-        $this->tblBook = $this->db->getBookTable();
-        $this->tblBookCategory = $this->db->getBookCategoryTable();
+        $this->tblMovie = $this->db->getMovieTable();
+        $this->tblMovieCategory = $this->db->getMovieCategoryTable();
 
         foreach ($_POST as $key => $value) {
             $_POST[$key] = $this->dbConnection->real_escape_string($value);
@@ -25,23 +25,23 @@ class BookModel {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
 
-        if (isset($_SESSION['book_categories'])) {
-            $categories = $this->getBookCategories();
-            $_SESSION['book_categories'] = $categories;
+        if (isset($_SESSION['movie_categories'])) {
+            $categories = $this->getMovieCategories();
+            $_SESSION['movie_categories'] = $categories;
         }
     }
 
-    public static function getBookModel() {
+    public static function getMovieModel() {
         if (self::$_instance == NULL) {
-            self::$_instance = new BookModel();
+            self::$_instance = new MovieModel();
         }
         return self::$_instance;
     }
 
-    public function list_books() {
-        $sql = "SELECT $this->tblBook.*, $this->tblBookCategory.category
-          FROM $this->tblBook, $this->tblBookCategory
-          WHERE $this->tblBook.category_id=$this->tblBookCategory.id";
+    public function list_movies() {
+        $sql = "SELECT $this->tblMovie.*, $this->tblMovieCategory.category
+          FROM $this->tblMovie, $this->tblMovieCategory
+          WHERE $this->tblMovie.category_id=$this->tblMovieCategory.id";
 
         $query = $this->dbConnection->query($sql);
 
@@ -53,24 +53,24 @@ class BookModel {
             return 0;
         }
 
-        $books = array();
+        $movies = array();
 
         while ($obj = $query->fetch_object()) {
-            $book = new Book(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));;
-            //set the id for the book
-            $book->setId($obj->id);
+            $movie = new Movie(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));;
+            //set the id for the movie
+            $movie->setId($obj->id);
 
-            //add the book into the array
-            $books[] = $book;
+            //add the movie into the array
+            $movies[] = $movie;
         }
-        return $books;
+        return $movies;
     }
 
-    public function view_book($id) {
-        $sql = "SELECT $this->tblBook.*, $this->tblBookCategory.category
-          FROM $this->tblBook, $this->tblBookCategory
-          WHERE $this->tblBook.category_id= $this->tblBookCategory.id
-            AND $this->tblBook.id='$id'";
+    public function view_movie($id) {
+        $sql = "SELECT $this->tblMovie.*, $this->tblMovieCategory.category
+          FROM $this->tblMovie, $this->tblMovieCategory
+          WHERE $this->tblMovie.category_id= $this->tblMovieCategory.id
+            AND $this->tblMovie.id='$id'";
 
         //execute the query
         $query = $this->dbConnection->query($sql);
@@ -78,19 +78,19 @@ class BookModel {
         if ($query && $query->num_rows > 0) {
             $obj = $query->fetch_object();
 
-            //create a book object
-            $book = new Book(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));
+            //create a movie object
+            $movie = new Movie(stripslashes($obj->title), stripcslashes($obj->author), stripslashes($obj->isbn), stripslashes($obj->category), stripslashes($obj->publish_date), stripslashes($obj->publisher), stripslashes($obj->image), stripslashes($obj->description));
 
-            //set the id for the book
-            $book->setId($obj->id);
+            //set the id for the movie
+            $movie->setId($obj->id);
 
-            return $book;
+            return $movie;
         }
 
         return false;
     }
 
-    public function update_book($id) {
+    public function update_movie($id) {
         if (!filter_has_var(INPUT_POST, 'title') ||
             !filter_has_var(INPUT_POST, 'isbn') ||
             !filter_has_var(INPUT_POST, 'author') ||
@@ -112,7 +112,7 @@ class BookModel {
         $image = trim(filter_input(INPUT_POST, 'image', FILTER_SANITIZE_STRING));
         $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
-        $sql = "UPDATE $this->tblBook
+        $sql = "UPDATE $this->tblMovie
           SET
             title='$title',
             isbn='$isbn',
@@ -127,15 +127,15 @@ class BookModel {
         return $this->dbConnection->query($sql);
     }
 
-    public function destroy_book($id) {
+    public function destroy_movie($id) {
         $sql = "DELETE
-            FROM $this->tblBook
+            FROM $this->tblMovie
             WHERE id='$id'";
 
         return $this->dbConnection->query($sql);
     }
 
-    public function create_book() {
+    public function create_movie() {
         if (!filter_has_var(INPUT_POST, 'title') ||
             !filter_has_var(INPUT_POST, 'isbn') ||
             !filter_has_var(INPUT_POST, 'author') ||
@@ -158,7 +158,7 @@ class BookModel {
         $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
         $sql = "INSERT
-          INTO $this->tblBook(
+          INTO $this->tblMovie(
             id,
             title,
             isbn,
@@ -184,8 +184,8 @@ class BookModel {
         return $this->dbConnection->query($sql);
     }
 
-    public function getBookCategories() {
-        $sql = "SELECT * FROM " . $this->tblBookCategory;
+    public function getMovieCategories() {
+        $sql = "SELECT * FROM " . $this->tblMovieCategory;
 
         $query = $this->dbConnection->query($sql);
 
@@ -202,13 +202,13 @@ class BookModel {
 
 
 
-    public function search_book($terms) {
+    public function search_movie($terms) {
         $terms = explode(" ", $terms);
 
         $sql = "SELECT
-          $this->tblBook.*, $this->tblBookCategory.category
-          FROM $this->tblBook, $this->tblBookCategory
-          WHERE $this->tblBook.category_id=$this->tblBookCategory.id AND (1";
+          $this->tblMovie.*, $this->tblMovieCategory.category
+          FROM $this->tblMovie, $this->tblMovieCategory
+          WHERE $this->tblMovie.category_id=$this->tblMovieCategory.id AND (1";
 
         foreach ($terms as $term) {
             $sql .= " AND title LIKE '%" . $term . "%'";
@@ -226,17 +226,17 @@ class BookModel {
             return 0;
         }
 
-        $books = array();
+        $movies = array();
 
         while ($obj = $query->fetch_object()) {
-            $book = new Book($obj->title, $obj->author, $obj->isbn, $obj->category, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
+            $movie = new Movie($obj->title, $obj->author, $obj->isbn, $obj->category, $obj->publish_date, $obj->publisher, $obj->image, $obj->description);
 
             //set the id for the movie
-            $book->setId($obj->id);
+            $movie->setId($obj->id);
 
             //add the movie into the array
-            $books[] = $book;
+            $movies[] = $movie;
         }
-        return $books;
+        return $movies;
     }
 }

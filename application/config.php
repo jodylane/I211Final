@@ -27,3 +27,4 @@ define("BASE_URL", "http://localhost:8888/i211/github/I211Final");
  ************************************************************************************/
 
 define("BOOK_IMG", "www/img/books/");
+define("MOVIE_IMG", "www/img/movies/");

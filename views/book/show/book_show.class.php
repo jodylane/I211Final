@@ -72,6 +72,10 @@ class BookShow extends BookIndexView
                                 <p><strong>Publisher: </strong><?= $publisher ?></p>
 
                                 <p><strong>Publish Date: </strong><?= $publish_date ?></p>
+
+                                <div>Add to cart</div>
+
+                                
                                 <a href="<?= BASE_URL ?>/book/">Back</a>
                                 <?php
                                     if($user) {

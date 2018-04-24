@@ -9,9 +9,11 @@
  */
 class BookController {
     private $book_model;
+    private $cart_model;
 
     public function __construct () {
         $this->book_model = BookModel::getBookModel();
+        //$this->cart_model = CartModel::getCartModel();
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -136,6 +138,13 @@ class BookController {
     public function error($message) {
         $error = new BookError();
         $error->display($message);
+    }
+
+    public function showCart(){
+        $cart = "";
+
+        $view = new CartIndex();
+        $view->display($cart);
     }
 
     //handle calling inaccessible methods

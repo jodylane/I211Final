@@ -7,6 +7,8 @@
  * Time: 1:46 PM
  * Description: This file was created to manage movies.
  */
+
+
 class MovieController {
     private $movie_model;
 

@@ -84,7 +84,6 @@ class UserModel
             !filter_has_var(INPUT_POST, 'email') ||
             !filter_has_var(INPUT_POST, 'password')
         ) {
-
             return false;
         }
 
@@ -111,6 +110,9 @@ class UserModel
             '$email',
             '$password'
             )";
+
+        $query = $this->dbConnection->query($sql);
+
         $id = $this->dbConnection->insert_id;
 
         $sql = "SELECT

@@ -75,7 +75,7 @@ class BookShow extends BookIndexView
 
                                 <div>Add to cart</div>
 
-                                
+
                                 <a href="<?= BASE_URL ?>/book/">Back</a>
                                 <?php
                                     if($user) {

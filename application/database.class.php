@@ -16,7 +16,7 @@ class Database {
         'tblBook' => 'books',
         'tblBookCategory' => 'books_categories',
         'tblMovie' => 'movies',
-        'tblMovieCategory' => 'movies_categories',
+        'tblMovieGenre' => 'movies_genre',
         'tblUser' => 'users',
         'tblUserBooks' => 'users_books'
 
@@ -58,8 +58,8 @@ class Database {
         return $this->params['tblMovie'];
     }
 
-    public function getMovieCategoryTable() {
-        return $this->params['tblMovieCategory'];
+    public function getMovieGenreTable() {
+        return $this->params['tblMovieGenre'];
     }
 
     public function getUserTable(){

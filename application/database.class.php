@@ -16,7 +16,7 @@ class Database {
         'tblBook' => 'books',
         'tblBookCategory' => 'books_categories',
         'tblMovie' => 'movies',
-        'tblMovieGenre' => 'movies_genres',
+        'tblMovieGenre' => 'movies_genre',
         'tblUser' => 'users',
         'tblUserBooks' => 'users_books'
 

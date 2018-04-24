@@ -41,8 +41,8 @@ class MovieModel {
     public function list_movies() {
         $sql = "SELECT $this->tblMovie.*, $this->tblMovieGenre.genre
           FROM $this->tblMovie, $this->tblMovieGenre
-          WHERE $this->tblMovie.genre_id=$this->tblMovieGenre.id";
-
+          WHERE $this->tblMovie.genre_id=$this->tblMovieGenre.genre_id";
+        echo $sql;
         $query = $this->dbConnection->query($sql);
 
         if (!$query) {
@@ -69,7 +69,7 @@ class MovieModel {
     public function view_movie($id) {
         $sql = "SELECT $this->tblMovie.*, $this->tblMovieGenre.genre
           FROM $this->tblMovie, $this->tblMovieGenre
-          WHERE $this->tblMovie.genre_id= $this->tblMovieGenre.id
+          WHERE $this->tblMovie.genre_id= $this->tblMovieGenre.genre_id
             AND $this->tblMovie.id='$id'";
 
         //execute the query
@@ -199,7 +199,7 @@ class MovieModel {
         $sql = "SELECT
           $this->tblMovie.*, $this->tblMovieGenre.genre
           FROM $this->tblMovie, $this->tblMovieGenre
-          WHERE $this->tblMovie.genre_id=$this->tblMovieGenre.id AND (1";
+          WHERE $this->tblMovie.genre_id=$this->tblMovieGenre.genre_id AND (1";
 
         foreach ($terms as $term) {
             $sql .= " AND title LIKE '%" . $term . "%'";

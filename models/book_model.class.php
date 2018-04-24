@@ -25,7 +25,7 @@ class BookModel {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
 
-        if (!isset($_SESSION['book_categories'])) {
+        if (isset($_SESSION['book_categories'])) {
             $categories = $this->getBookCategories();
             $_SESSION['book_categories'] = $categories;
         }

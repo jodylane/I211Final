@@ -12,6 +12,19 @@ class BookController {
 
     public function __construct () {
         $this->book_model = BookModel::getBookModel();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(!isset($_SESSION['user'])) {
+            $_SESSION['user'] = false;
+        }
+        if(!isset($_SESSION['admin'])) {
+            $_SESSION['admin'] = false;
+        }
+        if (isset($_SESSION['book_categories'])) {
+            $categories = $this->book_model->getBookCategories();
+            $_SESSION['book_categories'] = $categories;
+        }
     }
 
     public function index() {
@@ -107,6 +120,7 @@ class BookController {
         $query_terms = trim($_GET['query-terms']);
         if ($query_terms == "") {
             $this->index();
+            return;
         }
         $books = $this->book_model->search_book($query_terms);
         if ($books === false) {

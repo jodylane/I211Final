@@ -14,6 +14,14 @@ class BookShow extends BookIndexView
     {
         parent::displayHeader("Page Title");
 
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+        }
+        if(isset($_SESSION['admin'])) {
+            $role = $_SESSION['admin'];
+        }
+        echo $role;
+
         $id = $book->getId();
         $title = $book->getTitle();
         $isbn = $book->getIsbn();
@@ -64,9 +72,18 @@ class BookShow extends BookIndexView
                                 <p><strong>Publisher: </strong><?= $publisher ?></p>
 
                                 <p><strong>Publish Date: </strong><?= $publish_date ?></p>
-                                <a href="<?= BASE_URL ?>/book/index">Back</a> |
-                                <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
-                                <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
+                                <a href="<?= BASE_URL ?>/book/">Back</a>
+                                <?php
+                                    if($user) {
+                                        if($role) {
+                                            ?>
+                                            |
+                                            <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
+                                            <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
+                                            <?php
+                                        }
+                                    }
+                                ?>
 
                             </div>
                         </div>

@@ -9,6 +9,12 @@
  */
 class IndexView {
     public static function displayHeader($title) {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+        }
+        if(isset($_SESSION['admin'])) {
+            $role = $_SESSION['admin'];
+        }
         ?>
         <!DOCTYPE html>
         <html>
@@ -48,12 +54,24 @@ class IndexView {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-
-                                <li><a href="<?= BASE_URL . "/book/add" ?>">Create Book</a></li>
-                                <li><a href="<?= BASE_URL ?>/user/login">Login</a></li>
-                                <li><a href="<?= BASE_URL ?>/user/signup">Signup</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="<?= BASE_URL ?>/user/logout">Logout</a></li>
+                                <?php
+                                    if($user){
+                                        if($role) {
+                                            ?>
+                                            <li><a href="<?= BASE_URL . "/book/add" ?>">Create Book</a></li>
+                                            <?php
+                                        }
+                                            ?>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?= BASE_URL ?>/user/logout">Logout</a></li>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        <li><a href="<?= BASE_URL ?>/user/login">Login</a></li>
+                                        <li><a href="<?= BASE_URL ?>/user/signup">Signup</a></li>
+                                        <?php
+                                    }
+                                ?>
                             </ul>
                         </li>
                     </ul>

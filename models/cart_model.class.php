@@ -10,8 +10,12 @@ class CartModel {
     private $session;
     static private $_instance = NULL;
 
-    public function __construct($session) {
-      $this->session = $session;
+
+    public static function getCartModel() {
+        if (self::$_instance == NULL) {
+            self::$_instance = new BookModel();
+        }
+        return self::$_instance;
     }
 
     public function addToCart($id) {

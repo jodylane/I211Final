@@ -11,9 +11,12 @@ class BookController {
     private $book_model;
     private $cart_model;
 
+    private $cart;
+
     public function __construct () {
         $this->book_model = BookModel::getBookModel();
-        //$this->cart_model = CartModel::getCartModel();
+        $this->cart_model = CartModel::getCartModel();
+
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -26,6 +29,11 @@ class BookController {
         if (isset($_SESSION['book_categories'])) {
             $categories = $this->book_model->getBookCategories();
             $_SESSION['book_categories'] = $categories;
+        }
+        if(!isset($_SESSION['cart'])) {
+
+            //session_destroy();
+            $_SESSION['cart'] = array();
         }
     }
 
@@ -140,8 +148,29 @@ class BookController {
         $error->display($message);
     }
 
+    //following is for the cart
+
+    public function addToCart($id){
+        $book = $this->book_model->view_book($id);
+
+        array_push($_SESSION["cart"], $book);
+
+        $books = $this->book_model->list_books();
+
+        $view = new BookIndex();
+        $view->display($books);
+    }
+
+    public function clearCart(){
+        $_SESSION["cart"] = array();
+        $cart = $_SESSION['cart'];
+
+        $view = new CartIndex();
+        $view->display($cart);
+    }
+
     public function showCart(){
-        $cart = "";
+        $cart = $_SESSION["cart"];
 
         $view = new CartIndex();
         $view->display($cart);

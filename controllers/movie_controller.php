@@ -21,9 +21,9 @@ class MovieController {
         if(!isset($_SESSION['admin'])) {
             $_SESSION['admin'] = false;
         }
-        if (isset($_SESSION['movie_categories'])) {
-            $categories = $this->movie_model->getMovieCategories();
-            $_SESSION['movie_categories'] = $categories;
+        if (isset($_SESSION['movie_genres'])) {
+            $genres = $this->movie_model->getMovieGenres();
+            $_SESSION['movie_genres'] = $genres;
         }
     }
 

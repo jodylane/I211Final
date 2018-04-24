@@ -34,9 +34,9 @@ class MovieIndex extends MovieIndexView
                     foreach ($movies as $i => $movie) {
                         $id = $movie->getId();
                         $title = $movie->getTitle();
-                        $category = $movie->getCategory();
-                        $publish_date = new DateTime($movie->getPublishDate());
-                        $publish_date = $publish_date->format('m-d-Y');
+                        $genre = $movie->getGenre();
+                        $release_date = new DateTime($movie->getReleaseDate());
+                        $release_date = $release_date->format('m-d-Y');
                         $image = $movie->getImage();
                         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
                             $image = BASE_URL . "/" . MOVIE_IMG . $image;
@@ -55,9 +55,9 @@ class MovieIndex extends MovieIndexView
                                     <div class="caption">
                                         <h4><?= $title ?></h4>
 
-                                        <p><?= $category ?></p>
+                                        <p><?= $genre ?></p>
 
-                                        <p><?= $publish_date ?></p>
+                                        <p><?= $release_date ?></p>
                                     </div>
                                 </div>
                             </a>

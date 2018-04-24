@@ -7,12 +7,12 @@
  * Time: 2:02 PM
  * Description: This file was created to
  */
-class BookShow extends BookIndexView
+class MovieShow extends MovieIndexView
 {
 
-    public function display($book, $confirm = "")
+    public function display($movie, $confirm = "")
     {
-        parent::displayHeader("Page Title");
+        parent::displayHeader("Show Movie");
 
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
@@ -20,21 +20,19 @@ class BookShow extends BookIndexView
         if(isset($_SESSION['admin'])) {
             $role = $_SESSION['admin'];
         }
-        echo $role;
 
-        $id = $book->getId();
-        $title = $book->getTitle();
-        $isbn = $book->getIsbn();
-        $author = $book->getAuthor();
-        $category = $book->getCategory();
-        $publish_date = new \DateTime($book->getPublishDate());
-        $publish_date = $publish_date->format('m-d-Y');
-        $publisher = $book->getPublisher();
-        $image = $book->getImage();
-        $description = $book->getDescription();
+        $id = $movie->getId();
+        $title = $movie->getTitle();
+        $director = $movie->getDirector();
+        $genre = $movie->getGenre();
+        $release_date = new \DateTime($movie->getReleaseDate());
+        $release_date = $release_date->format('m-d-Y');
+        $writer = $movie->getWriter();
+        $image = $movie->getImage();
+        $description = $movie->getDescription();
 
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
-            $image = BASE_URL . '/' . BOOK_IMG . $image;
+            $image = BASE_URL . '/' . MOVIE_IMG . $image;
         }
         if ($confirm != "") {
             ?>
@@ -53,7 +51,7 @@ class BookShow extends BookIndexView
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading ">
-                        <h3 class="panel-title">Book Details</h3>
+                        <h3 class="panel-title">movie Details</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -63,23 +61,22 @@ class BookShow extends BookIndexView
                             <div class="col-md-8">
                                 <p><strong>Title: </strong><?= $title ?></p>
 
-                                <p><strong>Author: </strong><?= $author ?></p>
+                                <p><strong>Director: </strong><?= $director ?></p>
 
-                                <p><strong>Genre: </strong><?= $category ?></p>
+                                <p><strong>Genre: </strong><?= $genre ?></p>
 
-                                <p><strong>ISBN: </strong><?= $isbn ?></p>
 
-                                <p><strong>Publisher: </strong><?= $publisher ?></p>
+                                <p><strong>Writer: </strong><?= $writer ?></p>
 
-                                <p><strong>Publish Date: </strong><?= $publish_date ?></p>
-                                <a href="<?= BASE_URL ?>/book/">Back</a>
+                                <p><strong>Release Date: </strong><?= $release_date ?></p>
+                                <a href="<?= BASE_URL ?>/movie/">Back</a>
                                 <?php
                                     if($user) {
                                         if($role) {
                                             ?>
                                             |
-                                            <a href="<?= BASE_URL ?>/book/edit/<?= $id ?>">Edit</a> |
-                                            <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
+                                            <a href="<?= BASE_URL ?>/movie/edit/<?= $id ?>">Edit</a> |
+                                            <a href="<?= BASE_URL ?>/movie/destroy/<?= $id ?>">Delete</a>
                                             <?php
                                         }
                                     }
@@ -87,7 +84,7 @@ class BookShow extends BookIndexView
 
                             </div>
                         </div>
-                        <div class="row book-desc">
+                        <div class="row movie-desc">
                             <div class="col-md-12">
                                 <strong>Description: </strong><?= $description ?>
                             </div>

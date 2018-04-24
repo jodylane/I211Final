@@ -11,22 +11,16 @@ class WelcomeIndex extends IndexView {
 
     public function display() {
         parent::displayHeader("Indianapolis Library Home");
-        ?>    
-        <div id="main-header">Welcome to the Indianapolis Library.</div>
-
-        <div id="thumbnails">
-            <p>What would you like to do?</p>
-            
-            <a href="<?= BASE_URL ?>/book">
-                <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Library" />
-            </a>
-            <a href="<?= BASE_URL ?>/user/login">
-                <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Login"/>
-            </a>
-            <a href="<?= BASE_URL ?>/user/signup">
-                <img src="<?= BASE_URL ?>/www/img/no_cover.gif" title="Sign Up"/>
-            </a>
+        ?>  
+<div class='row'>
+        <div class="col-md-8 col-md-offset-2 jumbotron">
+    <h1 style="text-align: center">Indianapolis Online Library</h1>
+    <p style="text-align: center">What would you like to do?</p>
+    <br>
+    <p style="text-align: center"><a class="btn btn-primary btn-lg" href="<?= BASE_URL ?>/user/login" role="button">Log In</a> Not registered? <a href="<?= BASE_URL ?>/user/signup">Create an Account </a></p>
         </div>
+</div>
+
 
         <?php
         parent::displayFooter();

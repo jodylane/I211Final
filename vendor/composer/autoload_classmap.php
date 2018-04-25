@@ -16,6 +16,9 @@ return array(
     'BookModel' => $baseDir . '/models/book_model.class.php',
     'BookSearch' => $baseDir . '/views/book/search/book_search.class.php',
     'BookShow' => $baseDir . '/views/book/show/book_show.class.php',
+    'CartIndex' => $baseDir . '/views/cart/index/cart_index.class.php',
+    'CartIndexView' => $baseDir . '/views/cart/cart_index_view.class.php',
+    'CartModel' => $baseDir . '/models/cart_model.class.php',
     'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0' => $vendorDir . '/composer/autoload_static.php',
@@ -40,7 +43,7 @@ return array(
     'UserLogin' => $baseDir . '/views/user/login/user_login.class.php',
     'UserLogout' => $baseDir . '/views/user/logout/user_logout.class.php',
     'UserModel' => $baseDir . '/models/user_model.class.php',
-    'UserSignup' => $baseDir . '/views/user/signup/user_signup.class.php',
+    'UserSignup' => $baseDir . '/views/user/signUp/user_signUp.class.php',
     'WelcomeController' => $baseDir . '/controllers/welcome_controller.class.php',
     'WelcomeIndex' => $baseDir . '/views/welcome/welcome_index.class.php',
 );

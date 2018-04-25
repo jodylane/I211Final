@@ -17,6 +17,9 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
         'BookModel' => __DIR__ . '/../..' . '/models/book_model.class.php',
         'BookSearch' => __DIR__ . '/../..' . '/views/book/search/book_search.class.php',
         'BookShow' => __DIR__ . '/../..' . '/views/book/show/book_show.class.php',
+        'CartIndex' => __DIR__ . '/../..' . '/views/cart/index/cart_index.class.php',
+        'CartIndexView' => __DIR__ . '/../..' . '/views/cart/cart_index_view.class.php',
+        'CartModel' => __DIR__ . '/../..' . '/models/cart_model.class.php',
         'ComposerAutoloaderInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0' => __DIR__ . '/..' . '/composer/autoload_static.php',
@@ -41,7 +44,7 @@ class ComposerStaticInitc26750358f8449ddc9f34e711e4a96a0
         'UserLogin' => __DIR__ . '/../..' . '/views/user/login/user_login.class.php',
         'UserLogout' => __DIR__ . '/../..' . '/views/user/logout/user_logout.class.php',
         'UserModel' => __DIR__ . '/../..' . '/models/user_model.class.php',
-        'UserSignup' => __DIR__ . '/../..' . '/views/user/signup/user_signup.class.php',
+        'UserSignup' => __DIR__ . '/../..' . '/views/user/signUp/user_signUp.class.php',
         'WelcomeController' => __DIR__ . '/../..' . '/controllers/welcome_controller.class.php',
         'WelcomeIndex' => __DIR__ . '/../..' . '/views/welcome/welcome_index.class.php',
     );

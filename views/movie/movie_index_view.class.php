@@ -14,6 +14,10 @@ class MovieIndexView extends IndexView
         parent::displayHeader($title);
         // insert html for all movie pages.
         ?>
+        <script>
+            var media = 'movie';
+        </script>
+
         <div class="row">
             <div class="searchBar">
                 <div class="row">

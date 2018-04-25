@@ -10,19 +10,17 @@
 class MovieEdit extends MovieIndexView {
     public function display($movie) {
         parent::displayHeader("Edit Movie Details");
-
-        if (isset($_SESSION['movie_categories'])) {
-            $categories = $_SESSION['movie_categories'];
+        if (isset($_SESSION['movie_genres'])) {
+            $genres = $_SESSION['movie_genres'];
         }
 
         $id = $movie->getId();
         $title = $movie->getTitle();
-        $isbn = $movie->getIsbn();
-        $author = $movie->getAuthor();
-        $category = $movie->getCategory();
-        $publish_date = new \DateTime($movie->getPublishDate());
-        $publish_date = $publish_date->format('m-d-Y');
-        $publisher = $movie->getPublisher();
+        $director = $movie->getDirector();
+        $genre = $movie->getGenre();
+        $release_date = new \DateTime($movie->getReleaseDate());
+        $release_date = $release_date->format('m-d-Y');
+        $writer = $movie->getWriter();
         $image = $movie->getImage();
         $description = $movie->getDescription();
 
@@ -44,33 +42,30 @@ class MovieEdit extends MovieIndexView {
                                     <input class="form-control" name="title" value="<?= $title ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="isbn" value="<?= $isbn ?>"/>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" name="author" value="<?= $author ?>"/>
+                                    <input class="form-control" name="director" value="<?= $director ?>"/>
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
-                                    foreach ($categories as $m_category => $m_id) {
-                                        $checked = ($category == $m_category ) ? "checked" : "";
+                                    foreach ($genres as $m_genre => $m_id) {
+                                        $checked = ($genre == $m_genre ) ? "checked" : "";
 
                                         if (($m_id - 1) % 5 == 0) {
                                             echo "<div class='col-md-12'>";
                                         }
 
-                                        echo "<label class='radio-inline'><input type='radio' name='category' value='$m_id' $checked> $m_category</label>";
+                                        echo "<label class='radio-inline'><input type='radio' name='genre' value='$m_id' $checked> $m_genre</label>";
 
-                                        if (($m_id - 1) % 5 == 4 || ($m_id - 1) == count($categories) -1) {
+                                        if (($m_id - 1) % 5 == 4 || ($m_id - 1) == count($genres) -1) {
                                             echo "</div>";
                                         }
                                     }
                                     ?>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publish-date" value="<?= $publish_date ?>"/>
+                                    <input class="form-control" name="release-date" value="<?= $release_date ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publisher" value="<?= $publisher ?>"/>
+                                    <input class="form-control" name="writer" value="<?= $writer ?>"/>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" name="image" value="<?= $image ?>"/>

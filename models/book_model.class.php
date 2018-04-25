@@ -24,11 +24,6 @@ class BookModel {
         foreach ($_GET as $key => $value) {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
-
-        if (isset($_SESSION['book_categories'])) {
-            $categories = $this->getBookCategories();
-            $_SESSION['book_categories'] = $categories;
-        }
     }
 
     public static function getBookModel() {

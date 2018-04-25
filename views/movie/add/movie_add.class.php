@@ -10,8 +10,8 @@
 class MovieAdd extends MovieIndexView {
     public function display(){
         parent::displayHeader('New Movie');
-        if (isset($_SESSION['movie_categories'])) {
-            $categories = $_SESSION['movie_categories'];
+        if (isset($_SESSION['movie_genres'])) {
+            $genres = $_SESSION['movie_genres'];
         }
 
         ?>
@@ -24,38 +24,34 @@ class MovieAdd extends MovieIndexView {
                     <div class="panel-body">
                         <form action='<?= BASE_URL . "/movie/create" ?>' method="post">
                             <div class="col-md-10 col-md-offset-1">
-                                <input type="hidden" name="id">
                                 <div class="form-group">
                                     <input class="form-control" name="title" placeholder="Title"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="isbn" placeholder="ISBN"/>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" name="author" placeholder="Author"/>
+                                    <input class="form-control" name="director" placeholder="Director"/>
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
-                                    foreach ($categories as $m_category => $m_id) {
+                                    foreach ($genres as $m_genre => $m_id) {
                                         $checked = "";
 
                                         if (($m_id - 1) % 5 == 0) {
                                             echo "<div class='col-md-12'>";
                                         }
 
-                                        echo "<label class='radio-inline'><input type='radio' name='category' value='$m_id' $checked> $m_category</label>";
+                                        echo "<label class='radio-inline'><input type='radio' name='genre' value='$m_id' $checked> $m_genre</label>";
 
-                                        if (($m_id - 1) % 5 == 4 || ($m_id - 1) == count($categories) -1) {
+                                        if (($m_id - 1) % 5 == 4 || ($m_id - 1) == count($genres) -1) {
                                             echo "</div>";
                                         }
                                     }
                                     ?>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publish-date" placeholder="Publish Date yyyy-mm-dd"/>
+                                    <input class="form-control" name="release-date" placeholder="Release Date yyyy-mm-dd"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="publisher" placeholder="Publisher"/>
+                                    <input class="form-control" name="writer" placeholder="Writer"/>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" name="image" placeholder="Image URL"/>

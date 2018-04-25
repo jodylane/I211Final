@@ -21,7 +21,7 @@ class BookController {
         if(!isset($_SESSION['admin'])) {
             $_SESSION['admin'] = false;
         }
-        if (isset($_SESSION['book_categories'])) {
+        if (!isset($_SESSION['book_categories'])) {
             $categories = $this->book_model->getBookCategories();
             $_SESSION['book_categories'] = $categories;
         }

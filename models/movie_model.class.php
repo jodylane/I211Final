@@ -24,11 +24,6 @@ class MovieModel {
         foreach ($_GET as $key => $value) {
             $_GET[$key] = $this->dbConnection->real_escape_string($value);
         }
-
-        if (isset($_SESSION['movie_genres'])) {
-            $genres = $this->getMovieGenres();
-            $_SESSION['movie_genres'] = $genres;
-        }
     }
 
     public static function getMovieModel() {
@@ -42,7 +37,7 @@ class MovieModel {
         $sql = "SELECT $this->tblMovie.*, $this->tblMovieGenre.genre
           FROM $this->tblMovie, $this->tblMovieGenre
           WHERE $this->tblMovie.genre_id=$this->tblMovieGenre.genre_id";
-        echo $sql;
+
         $query = $this->dbConnection->query($sql);
 
         if (!$query) {
@@ -171,13 +166,12 @@ class MovieModel {
             '$image',
             '$description'
           )";
-
+        
         return $this->dbConnection->query($sql);
     }
 
     public function getMovieGenres() {
         $sql = "SELECT * FROM " . $this->tblMovieGenre;
-
         $query = $this->dbConnection->query($sql);
 
         if (!$query) {
@@ -186,7 +180,7 @@ class MovieModel {
 
         $genres = array();
         while ($obj = $query->fetch_object()) {
-            $genres[$obj->genre] = $obj->id;
+            $genres[$obj->genre] = $obj->genre_id;
         }
         return $genres;
     }

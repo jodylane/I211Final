@@ -47,7 +47,8 @@ function suggest(query) {
 
     //proceed only if the search term isn't empty
     // open an asynchronous request to the server.
-    xmlHttp.open("GET", base_url + "/book/suggest/" + query, true);
+    console.log(base_url + "/" + media + "/suggest/" + query);
+    xmlHttp.open("GET", base_url + "/" + media + "/suggest/" + query, true);
 
     //handle server's responses
     xmlHttp.onreadystatechange = function () {

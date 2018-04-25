@@ -14,6 +14,9 @@ class BookIndexView extends IndexView
         parent::displayHeader($title);
         // insert html for all book pages.
         ?>
+        <script>
+            var media = 'book';
+        </script>
         <div class="row">
             <div class="searchBar">
                 <div class="row">

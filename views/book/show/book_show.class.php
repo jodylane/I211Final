@@ -73,9 +73,6 @@ class BookShow extends BookIndexView {
 
                                 <p><strong>Publish Date: </strong><?= $publish_date ?></p>
 
-                                <a href="<?= BASE_URL ?>/book/addToCart/<?= $id ?>"><div>Add to cart</div></a>
-
-
                                 <a href="<?= BASE_URL ?>/book/">Back</a>
                                 <?php
                                 // if user is present and role is also admin display edit and destroy links
@@ -87,6 +84,9 @@ class BookShow extends BookIndexView {
                                             <a href="<?= BASE_URL ?>/book/destroy/<?= $id ?>">Delete</a>
                                             <?php
                                         }
+                                        ?>
+                                        | <a href="<?= BASE_URL ?>/book/addToCart/<?= $id ?>">Add to cart</a>
+                                        <?php
                                     }
                                 ?>
 

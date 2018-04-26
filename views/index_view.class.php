@@ -54,7 +54,14 @@ class IndexView {
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="<?= BASE_URL . "/book/showCart" ?>"> Checkout <span class="badge"> # </span></a></li>
+                                <?php
+                                if($user) {
+                                    ?>
+                                    <li><a href="<?= BASE_URL . "/book/showCart" ?>"> Checkout </a></li>
+                                    <?php
+                                }
+                                ?>
+
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
                                     <ul class="dropdown-menu">

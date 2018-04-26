@@ -13,13 +13,14 @@ class BookController {
 
     private $cart;
 
+    
     public function __construct () {
         $this->book_model = BookModel::getBookModel();
         $this->cart_model = CartModel::getCartModel();
-
+        //make sure a session has been started 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
-        }
+        }//indentify if the user logging in is an admin user
         if(!isset($_SESSION['user'])) {
             $_SESSION['user'] = false;
         }

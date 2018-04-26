@@ -28,12 +28,33 @@ class UserController {
         $view->display();
     }
 
-    public function create(){
-        $created = $this->user_model->create_user();
-        if(!$created) {
-            $message = "something went wrong and your user could not be registered.";
-            $this->error($message);
-            return;
+    public function sign($last_name, $first_name, $birth_date, $email) {
+        try {
+            // validate input; if invalid, throw exceptions
+            if (empty($first_name) || empty($last_name) || empty($birth_date) || empty($email)) {
+                throw new DataMissingException("All fields are required.");
+            } else if (!Utilities::validatedate($birth_date)) {
+                throw new DateException("The birthdate you entered is not a valid date.");
+            } else if (!Utilities::checkemail($email)) {
+                throw new EmailException("The email you entered is invalid.");
+            } else { //all inputs are valid; add them into the database.
+                $guest = new Guest($first_name, $last_name, $birth_date, $email);
+                $guest_model = new GuestModel;
+                $guest_model->addGuest($guest);
+
+                $view = new SignGuest();
+                $view->display();
+            }
+        } catch (DataMissingException $e) {
+            $this->error($e->getMessage());
+        } catch (DateException $e) {
+            $this->error($e->getMessage());
+        } catch (EmailException $e) {
+            $this->error($e->getMessage());
+        } catch (Exception $e) {
+            $this->error($e->getMessage());
+        }
+    }
         }
         $_SESSION['user'] = $created;
         $_SESSION['admin'] = $created->getRole() == 'admin';

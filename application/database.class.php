@@ -36,36 +36,37 @@ class Database {
         }
     }
 
+    //Grab database from phpmyadimin
     static public function getDatabase() {
         if (self::$_instance == NULL)
             self::$_instance = new Database();
         return self::$_instance;
     }
-
+    //gain connection to database
     public function getConnection() {
         return $this->objDBConnection;
     }
-
+    //get book table from database
     public function getBookTable() {
         return $this->params['tblBook'];
     }
-
+    //get book category from database
     public function getBookCategoryTable() {
         return $this->params['tblBookCategory'];
     }
-
+    //get movie table from database
     public function getMovieTable() {
         return $this->params['tblMovie'];
     }
-
+    //get movie genre from database
     public function getMovieGenreTable() {
         return $this->params['tblMovieGenre'];
     }
-
+    //get user table from database
     public function getUserTable(){
         return $this->params['tblUser'];
     }
-
+    // get books table from database
     public function getUserBooksTable(){
         return $this->params['tblUserBooks'];
 

@@ -27,48 +27,12 @@ class CartIndex extends CartIndexView {
         exit();
         } 
         
-        //else {
-          //  foreach ($cart as $book) {
-            //    $title = $book->getTitle()
-            //    echo $title . "<br>";
-            
-       //proceed if cart is l=]not empty
-       $cart = $_SESSION['cart'];
-       ?>
-        
-        <table>
-        <tr>
-        <th>Title</th>
-        </tr>
-    
-        <?php 
-        $sql = "SELECT ID, item_description, quantity, FROM movie OR books WHERE 0";
-
-        foreach (array_keys($cart) as $id) {
-        $sql .= " OR ID=$id";
-    }
-    
-        //execute query
-        $query = $conn->query($sql);
-
-        //fetch books or movies and display them in a table
-        while ($row = $query->fetch_assoc()) {
-        $id = $row['ID'];
-        $description = $row['description'];
-        $qty = $cart[$id];
-        echo "<tr>",
-            "<td><a href='index.php?ID=$id'>$description</a></td>",
-            "<td>$qty</td>",
-            "</tr>";
-    }
-    ?>
-</table>
-        
-        <div>
-        <input type="button" value="Checkout" onclick="window.location.href = 'checkout.php'"/>
-        <input type="button" value="Cancel" onclick="window.location.href = 'index.php'" />
-        </div>
-        
+        else {
+          foreach ($cart as $book) {
+               $title = $book->getTitle();
+               echo $title . "<br>";
+        }}
+               ?>
         
         <br><br>
         <a href="<?= BASE_URL ?>/book/clearCart"><div>Checkout</div></a>
@@ -77,5 +41,6 @@ class CartIndex extends CartIndexView {
 
         parent::displayFooter();
 
-    }
-}
+    
+        
+}}

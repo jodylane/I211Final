@@ -5,16 +5,18 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:02 PM
- * Description: This file was created to
+ * Description: This file was created to edit a book.
  */
 class BookEdit extends BookIndexView {
     public function display($book) {
         parent::displayHeader("Edit Book Details");
 
+        // retrieve all book categories
         if (isset($_SESSION['book_categories'])) {
             $categories = $_SESSION['book_categories'];
         }
 
+        // retrieve book details
         $id = $book->getId();
         $title = $book->getTitle();
         $isbn = $book->getIsbn();
@@ -26,10 +28,12 @@ class BookEdit extends BookIndexView {
         $image = $book->getImage();
         $description = $book->getDescription();
 
+        // display local image if value is not a url
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
             $image = BASE_URL . '/' . BOOK_IMG . $image;
         }
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -51,6 +55,7 @@ class BookEdit extends BookIndexView {
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
+                                    // loop through each category and display them as radio button.
                                     foreach ($categories as $b_category => $b_id) {
                                         $checked = ($category == $b_category ) ? "checked" : "";
 

@@ -5,23 +5,21 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:02 PM
- * Description: This file was created to
+ * Description: This file was created to show book details.
  */
-class BookShow extends BookIndexView
-{
-
-    public function display($book, $confirm = "")
-    {
+class BookShow extends BookIndexView {
+    public function display($book, $confirm = "") {
         parent::displayHeader("Page Title");
 
+        // retrieve user and role session variables for this file.
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
         }
         if(isset($_SESSION['admin'])) {
             $role = $_SESSION['admin'];
         }
-        echo $role;
 
+        // retrieve book details
         $id = $book->getId();
         $title = $book->getTitle();
         $isbn = $book->getIsbn();
@@ -33,9 +31,12 @@ class BookShow extends BookIndexView
         $image = $book->getImage();
         $description = $book->getDescription();
 
+        // display local image if value is not a url.
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
             $image = BASE_URL . '/' . BOOK_IMG . $image;
         }
+
+        // display update message if present
         if ($confirm != "") {
             ?>
             <div class="row">
@@ -45,7 +46,6 @@ class BookShow extends BookIndexView
                     <?= $confirm ?></div>
             </div>
             <?php
-
         }
         ?>
 
@@ -78,6 +78,7 @@ class BookShow extends BookIndexView
 
                                 <a href="<?= BASE_URL ?>/book/">Back</a>
                                 <?php
+                                // if user is present and role is also admin display edit and destroy links
                                     if($user) {
                                         if($role) {
                                             ?>
@@ -101,9 +102,7 @@ class BookShow extends BookIndexView
             </div>
         </div>
 
-
         <?php
-
         parent::displayFooter();
     }
 }

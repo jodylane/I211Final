@@ -5,18 +5,13 @@
  * User: Josh Lane
  * Date: 4/10/2018
  * Time: 7:33 PM
- * Description: This file was created to
+ * Description: This file was created to display search bar for books.
  */
-class BookIndexView extends IndexView
-{
-    public static function displayHeader($title)
-    {
+class BookIndexView extends IndexView {
+    public static function displayHeader($title) {
         parent::displayHeader($title);
-        // insert html for all book pages.
         ?>
-        <script>
-            var media = 'book';
-        </script>
+        <script> var media = 'book'; </script>
         <div class="row">
             <div class="searchBar">
                 <div class="row">
@@ -38,8 +33,7 @@ class BookIndexView extends IndexView
         <?php
     }
 
-    public static function displayFooter()
-    {
+    public static function displayFooter() {
         parent::displayFooter();
     }
 }

@@ -1,10 +1,6 @@
 <?php
-/*
- * Name: {brad update these two fields}
- * Description: {brad update these two fields}
- *
- *
- *
+/**
+ * User: Brad
  * */
 class UserController {
     private $user_model;

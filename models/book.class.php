@@ -5,7 +5,7 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 1:46 PM
- * Description: This file was created to blue print how a books structure should look.
+ * Description: This file was created to blue print how a books object should look.
  */
 class Book {
     private $id, $title, $author, $isbn, $category, $publish_date, $publisher, $image, $description;
@@ -21,6 +21,7 @@ class Book {
         $this->description = $description;
     }
 
+    // getter methods for book attributes
     public function getId () {
         return $this->id;
     }
@@ -57,6 +58,7 @@ class Book {
         return $this->description;
     }
 
+    // set book id
     public function setId ($id) {
         $this->id = $id;
     }

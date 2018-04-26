@@ -5,15 +5,13 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:02 PM
- * Description: This file was created to
+ * Description: This file was created to display movie details.
  */
-class MovieShow extends MovieIndexView
-{
-
-    public function display($movie, $confirm = "")
-    {
+class MovieShow extends MovieIndexView {
+    public function display($movie, $confirm = "") {
         parent::displayHeader("Show Movie");
 
+        // get access to user and role session variables for this file.
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
         }
@@ -21,6 +19,7 @@ class MovieShow extends MovieIndexView
             $role = $_SESSION['admin'];
         }
 
+        // retrieve movie details
         $id = $movie->getId();
         $title = $movie->getTitle();
         $director = $movie->getDirector();
@@ -31,9 +30,12 @@ class MovieShow extends MovieIndexView
         $image = $movie->getImage();
         $description = $movie->getDescription();
 
+        // modify image if the value is not a url.
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
             $image = BASE_URL . '/' . MOVIE_IMG . $image;
         }
+
+        // display message if not blank.
         if ($confirm != "") {
             ?>
             <div class="row">
@@ -71,6 +73,7 @@ class MovieShow extends MovieIndexView
                                 <p><strong>Release Date: </strong><?= $release_date ?></p>
                                 <a href="<?= BASE_URL ?>/movie/">Back</a>
                                 <?php
+                                // if user is present and role is also admin display this edit and delete links.
                                     if($user) {
                                         if($role) {
                                             ?>
@@ -94,9 +97,7 @@ class MovieShow extends MovieIndexView
             </div>
         </div>
 
-
         <?php
-
         parent::displayFooter();
     }
 }

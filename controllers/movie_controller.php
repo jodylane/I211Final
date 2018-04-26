@@ -12,6 +12,7 @@
 class MovieController {
     private $movie_model;
 
+    // retrieve moviemodel instace an set session variables if not already set
     public function __construct () {
         $this->movie_model = MovieModel::getMovieModel();
         if (session_status() == PHP_SESSION_NONE) {
@@ -29,57 +30,83 @@ class MovieController {
         }
     }
 
+    // display all movies page
     public function index() {
+        // retrieve all movies
         $movies = $this->movie_model->list_movies();
+
+        // something went wrong set message and display it
         if(!$movies) {
             $message = "There was a problem displaying movies.";
             $this->error($message);
             return;
         }
+        // else display list movies page
         $view = new MovieIndex();
         $view->display($movies);
     }
 
+    // show movie details
     public function show($id) {
+        // retrieve all movie
         $movie = $this->movie_model->view_movie($id);
+
+        // something went wrong set message and display it
         if(!$movie) {
             $message = "There was a problem displaying movie with id=$id.";
             $this->error($message);
             return;
         }
+
+        // else display movie details page page
         $view = new MovieShow();
         $view->display($movie);
     }
 
+    // edit movie details
     public function edit($id) {
+        // retrieve movie details
         $movie = $this->movie_model->view_movie($id);
+        // something went wrong display error with message
         if(!$movie) {
             $message = "There was a problem displaying the movie id='" . $id . "'.";
             $this->error($message);
             return;
         }
+
+        // else display edit movie details page
         $view = new MovieEdit();
         $view->display($movie);
     }
 
-    public function update($id){
+    public function update($id) {
+        // update movie details
         $update = $this->movie_model->update_movie($id);
+
+        // something went wrong display error with message
         if (!$update) {
             $message = "There was a problem updating the movie id='" . $id . "'.";
             $this->error($message);
             return;
         }
+
+        // retrieve movie
         $movie = $this->movie_model->view_movie($id);
+        // confirmation message
         $confirm = "Movie was successfully updated!";
+
+        // display movie details page
         $view = new MovieShow();
         $view->display($movie, $confirm);
     }
 
+    // display create movie page
     public function add() {
         $view = new MovieAdd();
         $view->display();
     }
 
+    // create new movie
     public function create() {
         $created = $this->movie_model->create_movie();
         if (!$created) {
@@ -93,6 +120,7 @@ class MovieController {
         $view->display($movies, $confirm);
     }
 
+    // destroy movie
     public function destroy($id) {
         $destroy = $this->movie_model->destroy_movie($id);
         if(!$destroy) {

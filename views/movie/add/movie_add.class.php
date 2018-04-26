@@ -5,16 +5,17 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:03 PM
- * Description: This file was created to
+ * Description: This file was created to create new movies
  */
 class MovieAdd extends MovieIndexView {
     public function display(){
         parent::displayHeader('New Movie');
+        // retrieve all movie genres.
         if (isset($_SESSION['movie_genres'])) {
             $genres = $_SESSION['movie_genres'];
         }
-
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -32,6 +33,7 @@ class MovieAdd extends MovieIndexView {
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
+                                    // loop through genres and display each one as a radio button
                                     foreach ($genres as $m_genre => $m_id) {
                                         $checked = "";
 
@@ -69,6 +71,7 @@ class MovieAdd extends MovieIndexView {
                 </div>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }

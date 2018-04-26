@@ -5,14 +5,12 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:03 PM
- * Description: This file was created to
+ * Description: This file was created to display and list all movies.
  */
-class MovieIndex extends MovieIndexView
-{
-    public function display($movies, $confirm = "")
-    {
+class MovieIndex extends MovieIndexView {
+    public function display($movies, $confirm = "") {
         parent::displayHeader("List All Movies");
-
+        //display a message in after delete action if present
         if ($confirm != "") {
             ?>
             <div class="row">
@@ -31,6 +29,7 @@ class MovieIndex extends MovieIndexView
                 if ($movies === 0) {
                     echo "No movie was found.<br><br><br><br><br>";
                 } else {
+                    // loop through each movie and retrieve movie details and display them.
                     foreach ($movies as $i => $movie) {
                         $id = $movie->getId();
                         $title = $movie->getTitle();
@@ -72,7 +71,8 @@ class MovieIndex extends MovieIndexView
                 ?>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }
-} //ends class
+}

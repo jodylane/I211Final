@@ -5,14 +5,13 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:03 PM
- * Description: This file was created to
+ * Description: This file was created to display all books.
  */
-class BookIndex extends BookIndexView
-{
-    public function display($books, $confirm = "")
-    {
+class BookIndex extends BookIndexView {
+    public function display($books, $confirm = "") {
         parent::displayHeader("List All Books");
 
+        // display create or delete message if present.
         if ($confirm != "") {
             ?>
             <div class="row">
@@ -31,6 +30,7 @@ class BookIndex extends BookIndexView
                 if ($books === 0) {
                     echo "No book was found.<br><br><br><br><br>";
                 } else {
+                    // loop through each book and retrieve book details and display them.
                     foreach ($books as $i => $book) {
                         $id = $book->getId();
                         $title = $book->getTitle();
@@ -72,7 +72,8 @@ class BookIndex extends BookIndexView
                 ?>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }
-} //ends class
+}

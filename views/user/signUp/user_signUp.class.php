@@ -4,14 +4,14 @@
  * User: busin
  * Date: 4/18/2018
  * Time: 5:50 PM
+ * Description: This file was created to display a sign up form for the user to register an account through the site.
  */
 
 class UserSignup extends UserIndexView {
-    public function display()
-    {
-        parent::displayHeader("User Sign up")
-
+    public function display() {
+        parent::displayHeader("User Sign up");
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -73,8 +73,8 @@ class UserSignup extends UserIndexView {
                 </div>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
-            }
-
+    }
 }

@@ -5,7 +5,7 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 1:46 PM
- * Description: This file was created to blue print how a books structure should look.
+ * Description: This file was created to blue print how a movie object should look.
  */
 class Movie {
     private $id, $title, $director, $genre, $release_date, $writer, $image, $description;
@@ -20,6 +20,7 @@ class Movie {
         $this->description = $description;
     }
 
+    // getter methods to retrieve movie attributes
     public function getId () {
         return $this->id;
     }
@@ -52,6 +53,7 @@ class Movie {
         return $this->description;
     }
 
+    // set movie id
     public function setId ($id) {
         $this->id = $id;
     }

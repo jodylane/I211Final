@@ -1,10 +1,13 @@
 <?php
-
+/**
+ * User: Blake
+*/
 class BookSearch extends BookIndexView {
 
     public function display($terms, $books) {
         parent::displayHeader("Search Results");
         ?>
+
         <div class="row">
             <div class="col-md-10  col-md-offset-1">
                 <div class="panel panel-default">
@@ -21,6 +24,7 @@ class BookSearch extends BookIndexView {
                 if ($books === 0) {
                     echo "No books were found with under '$terms'.<br><br><br><br><br>";
                 } else {
+                    // loop through each book and retrieve book details and display them.
                     foreach ($books as $i => $book) {
                         $id = $book->getId();
                         $title = $book->getTitle();
@@ -62,6 +66,7 @@ class BookSearch extends BookIndexView {
                 ?>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }

@@ -1,18 +1,18 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Created by PhpStorm.
+ * User: Josh Lane
+ * Date: 4/18/2018
+ * Time: 5:50 PM
+ * Description: This file was created to display a log in form for the user to log in to an existing account through the site.
  */
 
-class UserLogin extends UserIndexView
-{
-
-    public function display()
-    {
+class UserLogin extends UserIndexView {
+    public function display() {
         parent::displayHeader("Login");
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -32,24 +32,16 @@ class UserLogin extends UserIndexView
                                 <input type="password" name="password" class="form-control" id="inputPassword3"
                                        placeholder="Password">
                             </div>
-<!--                            <div class="form-group">-->
-<!--                                <div class="checkbox">-->
-<!--                                    <label>-->
-<!--                                        <input type="checkbox"> Remember me-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default">Sign in</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }
-
 }

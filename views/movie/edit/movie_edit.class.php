@@ -5,15 +5,18 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:02 PM
- * Description: This file was created to
+ * Description: This file was created to edit movie details.
  */
 class MovieEdit extends MovieIndexView {
     public function display($movie) {
         parent::displayHeader("Edit Movie Details");
+
+        // retrieve all movie genres
         if (isset($_SESSION['movie_genres'])) {
             $genres = $_SESSION['movie_genres'];
         }
 
+        // retrieve all movie details
         $id = $movie->getId();
         $title = $movie->getTitle();
         $director = $movie->getDirector();
@@ -24,10 +27,12 @@ class MovieEdit extends MovieIndexView {
         $image = $movie->getImage();
         $description = $movie->getDescription();
 
+        // user local image if image value is not a url.
         if (strpos($image, "http://") === false AND strpos($image, "https://") === false) {
             $image = BASE_URL . '/' . MOVIE_IMG. $image;
         }
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -46,6 +51,7 @@ class MovieEdit extends MovieIndexView {
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
+                                    // loop through each genre and display them as radio buttons
                                     foreach ($genres as $m_genre => $m_id) {
                                         $checked = ($genre == $m_genre ) ? "checked" : "";
 

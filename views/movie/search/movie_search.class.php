@@ -4,13 +4,13 @@
  * User: Blake
  * Date: 4/5/2018
  * Time: 2:03 PM
- * Description: This file was created to
+ * Description: This file was created to display all search result movies
  */
-    class MovieSearch extends MovieIndexView {
-
+class MovieSearch extends MovieIndexView {
     public function display($terms, $movies) {
         parent::displayHeader("Search Results");
         ?>
+
         <div class="row">
             <div class="col-md-10  col-md-offset-1">
                 <div class="panel panel-default">
@@ -27,6 +27,7 @@
                 if ($movies === 0) {
                     echo "No movies were found with under '$terms'.<br><br><br><br><br>";
                 } else {
+                    // loop through each movie and retrieve movie details and display them.
                     foreach ($movies as $i => $movie) {
                         $id = $movie->getId();
                         $title = $movie->getTitle();
@@ -68,6 +69,7 @@
                 ?>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }

@@ -5,19 +5,15 @@
  * User: Josh Lane
  * Date: 4/10/2018
  * Time: 7:33 PM
- * Description: This file was created to
+ * Description: This file was created to add movie search feature across all movie pages.
  */
-class MovieIndexView extends IndexView
-{
-    public static function displayHeader($title)
-    {
+class MovieIndexView extends IndexView {
+    public static function displayHeader($title) {
         parent::displayHeader($title);
-        // insert html for all movie pages.
+        // set media to movies to dynamically call between book and movie search methods.
         ?>
-        <script>
-            var media = 'movie';
-        </script>
 
+        <script> var media = 'movie'; </script>
         <div class="row">
             <div class="searchBar">
                 <div class="row">
@@ -39,8 +35,7 @@ class MovieIndexView extends IndexView
         <?php
     }
 
-    public static function displayFooter()
-    {
+    public static function displayFooter() {
         parent::displayFooter();
     }
 }

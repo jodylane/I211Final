@@ -1,16 +1,15 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * Created by PhpStorm.
+ * User: Josh Lane
+ * Date: 4/18/2018
+ * Time: 5:50 PM
+ * Description: This file was created to display a log out message to notify the user upon logging out.
  */
 
-class UserLogout extends UserIndexView
-{
-
-    public function display()
-    {
+class UserLogout extends UserIndexView {
+    public function display() {
         parent::displayHeader("logout");
         ?>
 
@@ -21,5 +20,4 @@ class UserLogout extends UserIndexView
         <?php
         parent::displayFooter();
     }
-
 }

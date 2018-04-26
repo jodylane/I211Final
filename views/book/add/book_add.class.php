@@ -5,16 +5,18 @@
  * User: Josh Lane
  * Date: 4/5/2018
  * Time: 2:03 PM
- * Description: This file was created to
+ * Description: This file was created to create a book.
  */
 class BookAdd extends BookIndexView {
     public function display(){
         parent::displayHeader('New Book');
+
+        // retrieve all book categories
         if (isset($_SESSION['book_categories'])) {
             $categories = $_SESSION['book_categories'];
         }
-
         ?>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -36,6 +38,7 @@ class BookAdd extends BookIndexView {
                                 </div>
                                 <div class="radio-form-fix">
                                     <?php
+                                    // loop through all categories and display them as radio buttons
                                     foreach ($categories as $b_category => $b_id) {
                                         $checked = "";
 
@@ -73,6 +76,7 @@ class BookAdd extends BookIndexView {
                 </div>
             </div>
         </div>
+
         <?php
         parent::displayFooter();
     }

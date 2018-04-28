@@ -17,6 +17,10 @@ class User {
         $this->role = $role;
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     // getter functions to retrieve user attributes
     public function getFirstName() {
         return $this->f_name;
